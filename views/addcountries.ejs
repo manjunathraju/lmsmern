@@ -1,0 +1,124 @@
+<%- include("./partials/header") %>
+<style>
+    body{
+      background-color: black;
+    }
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+label{
+    font-size: large;
+}
+</style>
+<!-- <div class="container-fluid" style="background-color: darkgray;">
+    <div class="row">
+        <div class="com-sm-12">
+            <button type="button" onclick="Save()" class="btn btn-success">Save</button>
+            <button type="button" onclick="Cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+            <h3>Add Country</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+           
+            <form action="/countriesdata" method="POST"  style="padding-top:10px;">
+                <label for="countryname">Country Name*</label>
+                <input type="text" id="countryname" name="countryname" placeholder="Country name" required>
+            
+                <label for="countrycode">Country Code</label>
+                <input type="text" id="countrycode" name="countrycode" placeholder="Country code" required>
+
+                <label for="currencyname">Currency Name</label>
+                <input type="text" id="currencyname" name="currencyname" placeholder="Currency name" required>
+
+                <label for="currencysymbol">Currency Symbol</label>
+                <input type="text" id="currencysymbol" name="currencysymbol" placeholder="eg: $ " required>
+
+                <label for="contact">Contact</label><br>
+                <input type="text" id="contact" name="contact" placeholder="" required><br>
+
+                
+
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                  <option value="enable">Enable</option>
+                  <option value="disable">Disable</option>
+                </select>
+
+
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/offers'" value="Cancel">
+              </form>
+
+
+        </div>
+        
+    </div>
+
+</div>
+<script>
+// function addoffers(e){
+//     e.preventDefault();
+//     const offername=document.getElementById('offername').value.toUpperCase();
+//     const couponcode=document.getElementById('couponcode').value.toUpperCase();
+//     const category=document.getElementById('category').value.toUpperCase();
+//     const type=document.getElementById('type').value;
+//     const status=document.getElementById('status').value.toUpperCase();
+//     const applicablecountries=document.getElementById('applicablecountries').value;
+//     const offermode=document.getElementById('offermode').value;
+//     const discountamt=document.getElementById('discountamt').value.toUpperCase();
+//     const startdate=document.getElementById('startdate').value;
+//     const enddate=document.getElementById('enddate').value;
+//    const data={offername,couponcode,category,type,status,applicablecountries,offermode,discountamt,startdate,enddate};
+//    const options={
+//     method:'POST',
+//     headers:{
+//        'Content-Type':'application/json'
+//     },
+//    body:JSON.stringify(data)
+//    }
+//    fetch('/offerdata',options)
+   
+   
+// }
+
+</script>
+
+<%- include("./partials/footer") %>

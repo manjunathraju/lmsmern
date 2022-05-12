@@ -1,0 +1,249 @@
+<%- include("./partials/header") %>
+<head>
+  
+  <meta charst="utf-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  
+  <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+  <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+  
+  <!-- Bootstrap Date-Picker Plugin -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  
+  
+  
+  <script type="text/javascript">
+  
+  $(document).ready(function(){
+        var date_input=$('input[name="myrosterdate"]'); //our date input has the name "myrosterdate"
+   var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        var options={
+        multidate:true,
+        format: 'dd-mm-yyyy',
+          container: container,
+          todayHighlight: true,
+          autoclose: false,
+        };
+        date_input.datepicker(options);
+      })
+  </script>
+  </head>
+<style>
+    body{
+      background-color: black;
+    }
+    input[type=text],input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+label{
+    font-size: large;
+}
+
+    #categoryname,#coursename,#countryname,#cityname {
+  animation: blinker 1s linear infinite;
+  border: 1px solid red;
+    }
+
+    @keyframes blinker {
+    50% {
+        opacity: 0;
+        border: 1px solid red;
+    }
+    }
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+      .row {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
+      .ql-container.ql-snow{
+          border: 1px solid black;
+      }
+    }
+
+
+
+
+</style>
+<!-- <div class="container-fluid" style="background-color: darkgray;">
+    <div class="row">
+        <div class="com-sm-12">
+            <button type="button" onclick="Save()" class="btn btn-success">Save</button>
+            <button type="button" onclick="Cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+            <h3>Edit Schedules</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+  
+   
+
+            <form action="/updateschedulesdata/<%=scheduleddata._id%>" method="POST"  style="padding-top:10px;" >
+
+             <div class="row">
+
+            
+              <div class="col-sm-6">
+
+              
+                <label for="categoryname">Category Name</label>
+                <select name="category" id="categoryname" ></select>
+            
+                  <label for="coursename">Course Name</label>
+                  <select id="coursename" name="coursename"></select>
+
+                <label for="country">Choose Country</label>
+                <select id="countryname" name="countryname"></select>
+
+                <label for="city">Choose City</label>
+                <select id="cityname" name="cityname"></select>
+
+                <label for="baseprice">Base Price</label>
+               <input type="number" name="baseprice" id="baseprice" value="<%=scheduleddata.base_price%>">
+
+               <label for="specialprice">Special Price</label>
+               <input type="number" name="specialprice" id="specialprice" value="<%=scheduleddata.special_price%>">
+
+               <label for="tax">Tax</label>
+               <input type="number" name="tax" id="tax" value="<%=scheduleddata.tax%>">
+              </div>
+              <div class="col-sm-6">
+
+                  
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                      <option value="Enable">Enable</option>
+                      <option value="Disable">Disable</option>
+                    </select>
+
+                    <label for="stage">Course Stage</label>
+                    <select id="stage" name="stage" style="cursor: not-allowed;">
+                      <option value="scheduled">Scheduled</option>
+                    </select>
+
+                    <label for="coursetype">Course Type</label>
+                    <select id="type" name="type" >
+                      <option value="LV1">Live Virtual Classroom</option>
+                      <option value="CT1">Classroom Training</option>
+                    </select>
+
+                    <label for="classtype">Class Type</label>
+                    <select id="classtype" name="classtype" >
+                      <option value="weekdays">WeekDays Classes</option>
+                      <option value="weekend">WeekEnd Classes</option>
+                    </select>
+                  
+               
+               
+                  <label for="dates">Selected Date</label>
+                  <input class="form-control" id="myrosterdate" name="myrosterdate" placeholder="MM/DD/YYY" type="text" value="<%=scheduleddata.date%>"/>
+                  <!-- <input type="text" class="form-control date" id="date" placeholder="Pick the multiple dates"> -->
+                 
+                  <label for="starttimed">Start Time</label>
+                  <input type="time" class="form-control " name="starttime" id="starttime" value="<%=scheduleddata.start_time%>">
+
+                  <label for="endtime">End Time</label>
+                  <input type="time" class="form-control " name="endtime" id="endtime" value="<%=scheduleddata.end_time%>">
+                </div>
+              </div>
+
+
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/categories'" value="Cancel">
+              </form>
+       
+   
+              <p id="catdata" style="display: none;"><%=categorydata%></p>
+              <p id="coursedata" style="display: none;"><%=coursesdata%></p>
+              <p id="cntdata" style="display: none;"><%=countrydata%></p>
+              <p id="citydata" style="display: none;"><%=citydata%></p>
+
+        </div>
+        
+    </div>
+
+                       
+</div>
+
+<script>
+ var catdata=document.getElementById("catdata").innerText;
+var array=catdata.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('categoryname');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+</script>
+<script>
+ var coursedata=document.getElementById("coursedata").innerText;
+var array=coursedata.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('coursename');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+</script>
+<script>
+   var countryname=document.getElementById("cntdata").innerText;
+var array=countryname.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('countryname');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+</script>
+<script>
+
+ var cityname=document.getElementById("citydata").innerText;
+var array=cityname.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('cityname');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+</script>
+<%- include("./partials/footer") %>

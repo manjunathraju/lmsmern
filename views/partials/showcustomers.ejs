@@ -1,0 +1,24 @@
+<% for(var i=0;i<data.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=data[i].customername%></td>
+    <td><%=data[i].customeremail%></td>
+    <td><%=data[i].number%></td>
+    <td><%=data[i].registeredmode%></td>
+    <td><%=data[i].accesstype%></td>
+    <td><%=data[i].expdate%></td>
+    <td id='status'><%=data[i].subscriptionstatus%></td>
+    <td><%=data[i].signeddate%></td>
+    <td><%=data[i].status%></td>
+    <td>
+        <a href='/edit_customer/<%=data[i]._id%>/<%=data[i].customername%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+    
+        <a href='/delete_customer/<%=data[i]._id%>/<%=data[i].customername%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr>
+<%}%>

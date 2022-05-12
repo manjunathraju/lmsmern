@@ -1,0 +1,150 @@
+<%- include("./partials/header") %>
+<style>
+    body{
+      background-color: black;
+    }
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+label{
+    font-size: large;
+}
+</style>
+<!-- <div class="container-fluid" style="background-color: darkgray;">
+    <div class="row">
+        <div class="com-sm-12">
+            <button type="button" onclick="Save()" class="btn btn-success">Save</button>
+            <button type="button" onclick="Cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+            <h3>Add Trainers</h3>
+        </div>
+    </div>
+    <div class="row">
+        
+          <!-- onsubmit="addcustomers(event,this)" -->
+            <form action="/trainerupdateddata/<%=trainerdata._id%>" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+
+              <h1 id="data" style="display: none;"><%=data%></h1>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="trainername">Trainer Name</label>
+                  <input type="text" id="trainername" name="trainername" value="<%=trainerdata.trainer_name%>" placeholder="Trainer name " required>
+  
+                  <label for="Choose course">Choose Course</label>
+                  <select name="course" id="course" style="width: 100%;"></select>
+
+                  <label for="learnercount">LearnerCount</label>
+                  <br>
+                  <input type="number" id="learnercount" name="learnercount" placeholder="Learner Count" value="<%=trainerdata.learner_count%>" required>
+                 
+                  <br><label for="videototaltime">Video Total Time</label>
+                  <br><input type="number" id="videototaltime" name="videototaltime" value="<%=trainerdata.video_total_time%>" placeholder="in seconds" required>
+                  
+                 <br> <label for="Status">Status</label>
+                  <br> <select name="status" id="status" style="width: 100%;">
+                        <option value="ENABLE">Enable</option>
+                        <option value="DISABLE">Disable </option>
+                    </select>     
+
+                    <label for="courseimage" class="form-label">Course Image</label>
+                    <input class="form-control" id="formFile" type="file"  name='courseimage' accept="image/png, image/gif, image/jpeg , image/jpg,image/PNG, image/GIF, image/JPEG , image/JPG, image/webp , image/WEBP">
+                    <small><strong><%=trainerdata.course_image%></strong></small>
+                    <small id="emailHelp" class="form-text" >Note: Upload Image files only(jpeg,jpeg,png,webp)</small>
+
+  
+  
+                </div>
+                <div class="col-md-6">
+                  <label for="trainerdesc">Trainer Description</label>
+                  <br>
+                  <textarea id="trainer_desc" name="trainer_desc" rows="4" cols="30" placeholder="Trainer Description">v<%=trainerdata.trainer_desc%></textarea>
+                  <br>
+
+                  <label for="trainercoursedesc">Trainer Designation</label>
+                  <br>
+                  <textarea id="trainer_course_desc" name="trainer_course_desc" rows="4" cols="30" placeholder="Trainer Course Description"><%=trainerdata.trainer_course_desc%></textarea>
+                  <br>
+
+                  <label for="disclaimer">Disclaimer</label>
+                  <br>
+                  <textarea id="disclaimer" name="disclaimer" rows="4" cols="30" placeholder="Disclaimer"><%=trainerdata.disclaimer%></textarea>
+<br>
+                  <label for="trainerimage" class="form-label">Trainer Image</label>
+                    <input class="form-control" id="formFile" type="file"  name='trainerimage' accept="image/png, image/gif, image/jpeg , image/jpg,image/PNG, image/GIF, image/JPEG , image/JPG, image/webp , image/WEBP">
+                    <small><strong><%=trainerdata.image%></strong></small>
+                    <small id="emailHelp" class="form-text" >Note: Upload Image files only(jpeg,jpeg,png,webp)</small>
+                
+                  </div>
+              </div>
+              
+  
+              
+  
+              
+
+              
+
+             
+
+              
+
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/trainers'" value="Cancel">
+              </form>
+
+
+        
+        
+    </div>
+
+</div>
+<script>
+   ////getting category data to select dropdown here
+var data=document.getElementById("data").innerText;
+var array=data.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('course');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+ 
+</script>
+
+<%- include("./partials/footer") %>

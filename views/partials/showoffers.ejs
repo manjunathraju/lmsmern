@@ -1,0 +1,22 @@
+<% for(var i=0;i<data.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=data[i].offername%></td>
+    <td><%=data[i].coupon_code%></td>
+    <td><%=data[i].course_category%></td>
+    <td><%=data[i].discountamt%></td>
+    <td id='status'><%=data[i].status%></td>
+    <td><%=data[i].startdate%></td>
+    <td><%=data[i].enddate%></td>
+    <td>
+        <a href='/update_offer/<%=data[i]._id%>/<%=data[i].offername%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+    
+        <a href='/delete_offer/<%=data[i]._id%>/<%=data[i].offername%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr>
+<%}%>

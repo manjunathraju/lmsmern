@@ -1,0 +1,163 @@
+<%- include("./partials/header") %>
+<style>
+  body{
+    background-color: black;
+  }
+  .styled-table {
+    background-color: rgb(205, 208, 255);
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>
+<div class="container" style="background-color: white;">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+     
+        <h3>Countries</h3>
+  
+        <div class="searchbox" style="float: right;margin-top: -30px;">
+          <i class="fas fa-search"></i><input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Search for Country." title="Type in a name">
+        </div>
+
+      <hr size="3">
+      
+    </div>
+  </div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal">
+  Upload
+</button>
+<div class="addbutton" style="float: right;padding: 1px 0px 10px 0px;">
+
+  <a href="/addcountry" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Add Country</a>
+</div>
+<br>
+<br>
+
+
+<table class="styled-table" id="myTable">
+  <thead>
+      <tr>
+          <th>SID</th>
+          <th>Country Name</th>
+          <th>Country Code</th>
+          <th>Currency </th>
+          <th> Contact</th>
+          <th>Status</th>
+          <th>Action</th>
+         
+         
+      </tr>
+  </thead>
+  <tbody id="data" >
+    <%- include("./partials/showcountries") %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/countryfileupload" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+          <label for="profilepic">Country File</label><br>
+          <input type="file" id="file" name="file" required>
+
+          <button type="submit" class="btn btn-primary">Upload</button>
+          <!-- <input type="submit" value="Save"> -->
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // getData();
+  // async function getData(){
+  //   fetch('/get_offers',{method:'get'})
+  //   .then(response=>response.json())
+  //   .then(data=>{
+  //     if(data.length>0){
+  //       var temp=""
+  //       data.forEach((item) => {
+  //                           temp+="<tr>";
+  //                            temp+="<td>"+item.sid+"</td>";
+  //                           temp+="<td>"+item.offername+"</td>";
+  //                           temp+="<td>"+item. coupon_code+"</td>";
+  //                           temp+="<td>"+item.course_category+"</td>";
+  //                           temp+="<td>"+item.status+"</td>";"</tr>";
+                            
+  //                       });
+  //                       document.getElementById("data").innerHTML=temp;
+  //     }
+  //   })
+  // }
+  function searchfunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+</script>
+
+
+<%- include("./partials/footer") %>

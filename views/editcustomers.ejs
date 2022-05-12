@@ -1,0 +1,201 @@
+<%- include("./partials/header") %>
+<style>
+    body{
+      background-color: black;
+    }
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+label{
+    font-size: large;
+}
+</style>
+<!-- <div class="container-fluid" style="background-color: darkgray;">
+    <div class="row">
+        <div class="com-sm-12">
+            <button type="button" onclick="Save()" class="btn btn-success">Save</button>
+            <button type="button" onclick="Cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+            <h3>Edit Customers</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+          <!-- onsubmit="addcustomers(event,this)" -->
+            <form action="/updatecustomer/<%=customerdata._id%>" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+
+              <label for="customertype">Customer Type</label>
+              <select id="customertype" name="customertype"  value="<%=customerdata.customertype%>">
+                <option value="exist">Existing Customer</option>
+                <option value="new">New Customer</option>
+              </select>
+
+              <label for="gender">Gender</label><br>
+              <select id="gender" name="gender"  value="<%=customerdata.gender%>">
+                <option value="mr">Mr.</option>
+                <option value="ms">Ms.</option>
+              </select>
+
+                <label for="customername">Customer Name</label>
+                <input type="text" id="customername" name="customername" placeholder="customer name "  value="<%=customerdata.customername%>" required>
+            
+                <label for="customeremail">Customer Email</label>
+                <input type="text" id="customeremail" name="customeremail" placeholder="customer email" value="<%=customerdata.customeremail%>" required>
+
+                <label for="password">New Password*</label><br>
+                <input type="password" id="password" name="password"  value="<%=customerdata.password%>"  required><br>
+
+                <label for="cpassword">Confirm Password*</label><br>
+                <input type="password" id="cpassword" name="cpassword"  value="<%=customerdata.password%>" required><br>
+            
+
+                <label for="accounttype">Account Type</label>
+                <select id="accounttype" name="accounttype" value="<%=customerdata.accounttype%>">
+                  <option value="online">Online Training</option>
+                  <option value="classroom">Classroom Training</option>
+                  <option value="lvclassroom">Live Virtual Classroom Training</option>
+                </select><br>
+
+                <label for="mobile">Mobile</label><br>
+                <input type="number" id="mobile" name="mobile"  value="<%=customerdata.number%>"  required><br>
+
+                <label for="country">Country</label><br>
+                <input type="text" id="country" name="country"  value="<%=customerdata.country%>" required><br>
+
+                <label for="state">State</label>
+                <input type="text" id="state" name="state"  value="<%=customerdata.state%>"  required>
+
+                <label for="accesstype">Choose Version</label>
+                <select id="accesstype" name="accesstype"  value="<%=customerdata.accesstype%>">
+                  <option value="trial">Trial</option>
+                  <option value="paid">Paid</option>
+                </select>
+
+                <label for="examaccess">Allow Exam</label>
+                <select id="examaccess" name="examaccess" value="<%=customerdata.examaccess%>">
+                  <option value="yes">YES</option>
+                  <option value="no">NO</option>
+                </select>
+                <label for="startedate">SignedUp date</label><br>
+                <input type="date" id="startedate" name="startedate" value="<%=customerdata.signeddate%>"><br>
+
+                <label for="expdate">Expiry date</label><br>
+                <input type="date" id="expdate" name="expdate" value="<%=customerdata.expdate%>"><br>
+                    <br>
+                <label for="category">Choose Category</label>
+                <select id="category" name="category" multiple value="<%=customerdata.category%>">
+                  <option value="all">All</option>
+                  <option value="agile management">Agile management</option>
+                  <option value=" pmp">PMP</option>
+                </select>
+
+                <label for="status">Status</label>
+                <select id="status" name="status" value="<%=customerdata.status%>">
+                  <option value="enable">Enable</option>
+                  <option value="disable">Disable</option>
+                </select>
+
+                <label for="profilepic">Profile Picture</label><br>
+                <input type="file" id="file" name="file" required>
+
+
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/customers'" value="Cancel">
+              </form>
+
+
+        </div>
+        
+    </div>
+
+</div>
+<script>
+  var password=document.getElementById('password');
+  var cpassword=document.getElementById('cpassword');
+  
+
+
+function validatePassword(){
+  if(password.value != cpassword.value) {
+    cpassword.setCustomValidity("Passwords Don't Match");
+  } else {
+    cpassword.setCustomValidity("");
+  }
+}
+
+password.onchange = validatePassword;
+cpassword.onkeyup = validatePassword;
+     
+// function addcustomers(e){
+//     e.preventDefault();
+//     const customertype=document.getElementById('customertype').value.toUpperCase();
+//     const gender=document.getElementById('gender').value.toUpperCase();
+//     const customername=document.getElementById('customername').value.toUpperCase();
+//     const customeremail=document.getElementById('customeremail').value;
+//     const password=document.getElementById('password').value;
+//     const cpassword=document.getElementById('cpassword').value;
+//     const accounttype=document.getElementById('accounttype').value;
+//     const mobile=document.getElementById('mobile').value;
+//     const country=document.getElementById('country').value;
+//     const state=document.getElementById('state').value;
+//     const accesstype=document.getElementById('accesstype').value;
+//     const examaccess=document.getElementById('examaccess').value;
+//     const startedate=document.getElementById('startedate').value;
+//     const expdate=document.getElementById('expdate').value;
+//     const category=document.getElementById('category').value;
+//     const status=document.getElementById('status').value;
+//     const image=document.getElementById('file').value;
+  
+
+//    const data={customertype,gender,customername,customeremail,password,cpassword,accounttype,mobile,country,state,accesstype,examaccess,startedate,expdate,category,status,image};
+//    const options={
+//     method:'POST',
+//     headers:{
+//        'Content-Type':'application/json'
+//     },
+//    body:JSON.stringify(data)
+//    }
+//    fetch('/customerdata',options)
+   
+   
+// }
+
+</script>
+
+<%- include("./partials/footer") %>

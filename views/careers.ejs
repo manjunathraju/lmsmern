@@ -1,0 +1,271 @@
+<%- include("./partials/header") %>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+
+          
+
+        body {
+          font-family: Arial;
+          font-size: 17px;
+          padding: 8px;
+        }
+        
+        * {
+          box-sizing: border-box;
+        }
+        
+        .row {
+          display: -ms-flexbox; /* IE10 */
+          display: flex;
+          -ms-flex-wrap: wrap; /* IE10 */
+          flex-wrap: wrap;
+          margin: 0 -16px;
+        }
+        
+        .col-25 {
+          -ms-flex: 25%; /* IE10 */
+          flex: 25%;
+        }
+        
+        .col-50 {
+          -ms-flex: 50%; /* IE10 */
+          flex: 50%;
+        }
+        
+        .col-75 {
+          -ms-flex: 75%; /* IE10 */
+          flex: 75%;
+        }
+        
+        .col-25,
+        .col-50,
+        .col-75 {
+          padding: 0 16px;
+        }
+        
+        .container-fluid {
+          background-color: #f2f2f2;
+          padding: 5px 20px px 20px;
+          border: 1px solid lightgrey;
+          border-radius: 3px;
+        }
+        
+        input[type=text] {
+          width: 100%;
+          margin-bottom: 20px;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+        }
+        
+        label {
+          margin-bottom: 10px;
+          display: block;
+        }
+        .icon-container {
+      margin-bottom: 20px;
+      padding: 7px 0;
+      font-size: 24px;
+    }
+    
+    .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      
+      border: none;
+      width: 100%;
+    
+      cursor: pointer;
+      font-size: 17px;
+    }
+    
+    .btn:hover {
+      background-color: #45a049;
+    }
+    
+    a {
+      color: #2196F3;
+    }
+    
+    hr {
+      border: 1px solid lightgrey;
+    }
+    
+    span.price {
+      float: right;
+      color: grey;
+    }
+    
+    .btncancel {
+      background-color: hsl(2, 95%, 34%);
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      width: 100%;
+   
+      cursor: pointer;
+      font-size: 17px;
+    }
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+      .row {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
+    }
+
+    .active, .hiddenbox:hover {
+  background-color: #555;
+}
+
+    
+    </style>
+    </head>
+    <body>
+      
+    <h1> CAREERS  </h1>
+    <form action="/careerdata/<%=data._id%>" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+    
+        <div class="container-fluid" style="background-color: rgba(56, 56, 59, 0.493);"> 
+            <div class="row" style="margin-bottom: 40px;">
+              
+                
+                <h2 style="color: blue;">Career Info </h2>
+                <label for="fname">Careers Title </label>
+                <input type="text" id="careerstitle" name="careerstitle"  value="<%=data.careerstitle%>" placeholder="">
+
+                <label for="fname" >What We Do</label>
+                <textarea id="whatwedo" name="whatwedo" value="<%=data.whatwedo%>" rows="4" cols="50">
+                </textarea>
+
+                <label for="fname">What We Want</label>
+                <textarea id="whatwewant" name="whatwewant" value="<%=data.whatwewant%>" rows="4" cols="50">
+                </textarea>
+
+                <label for="fname">Careers Description  </label>
+                <textarea id="careerdesc" name="careerdesc" value="<%=data.careerdesc%>" rows="4" cols="50">
+                </textarea>
+                
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">What We Do Image </label>
+                    <input class="form-control" id="whatwedoimg" value="<%=data.whatwedoimg%>" type="file" name="whatwedoimg">
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">What We Want Image </label>
+                    <input class="form-control" id="whatwewantimg" value="<%=data.whatwewantimg%>" type="file" name="whatwewantimg">
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Apply Now Image </label>
+                    <input class="form-control" id="applynowimg" value="<%=data.applynowimg%>" type="file" name="applynowimg">
+                </div>
+            </div>
+        </div>   
+
+        <div class="container-fluid" style="background-color: rgba(145, 149, 150, 0.452);"> 
+            <div class="row" style="margin-bottom: 40px;">
+                <h2 style="color: brown;">OUR VALUES</h2>
+
+                <label for="fname">Opportunity </label>
+                <textarea id="opportunity" name="opportunity" value="<%=data.opportunity%>" rows="4" cols="50">
+                </textarea>
+
+                <label for="fname">Transparency</label>
+                <textarea id="transparency" name="transparency" value="<%=data.transparency%>" rows="4" cols="50">
+                </textarea>
+
+                <label for="fname">Diversity</label>
+                <textarea id="diversity" name="diversity" value="<%=data.diversity%>" rows="4" cols="50">
+                </textarea>
+
+                <label for="fname">Decency</label>
+                <textarea id="decency" name="decency" value="<%=data.decency%>" rows="4" cols="50">
+                </textarea>
+            </div>
+        </div>  
+                    
+        <div class="container-fluid" style="background-color: rgba(65, 68, 66, 0.082);"> 
+            <div class="row" >
+                <h2 style="color: rgb(88, 122, 23);">JOB OPENINGS </h2>
+
+                <label for="fname">Job-1  </label>
+                <input type="text" id="job1" name="job1" value="<%=data.job1%>" placeholder="Inside Sales Manager">
+
+                <label for="fname">Job-2  </label>
+                <input type="text" id="job2" name="job2" value="<%=data.job2%>" placeholder="Content Developers">
+
+                <label for="fname">Job-3  </label>
+                <input type="text" id="job3" name="job3" value="<%=data.job3%>" placeholder="Digital Marketing Manager">
+
+                <label for="fname">Job-4  </label>
+                <input type="text" id="job4" name="job4" value="<%=data.job4%>" placeholder="Instructors For Our Courses">
+
+                <label for="fname">Job-5  </label>
+                <input type="text" id="job5" name="job5" value="<%=data.job5%>" placeholder="IOS App Developer">
+
+                <label for="fname">Job-6  </label>
+                <input type="text" id="job6" name="job6" value="<%=data.job6%>" placeholder="CMO - Chief Marketing Officer">
+
+                <div class="hiddenbox">
+                    
+                    <button type="button" class="btn1" data-toggle="collapse" data-target="#demo">Hide</button>
+                    <div id="demo" class="collapse">
+                        <button type="button" class="hiddenbox">Job-7</button>              
+                        <input type="text" id="job7" name="ju7" placeholder="Question">
+                   
+
+                    <button type="button" class="hiddenbox">Job-8</button>                        
+                        <input type="text" id="job8" name="jun8" placeholder="Question">
+                       
+                        <button type="button" class="hiddenbox">Job-9</button>                                            
+                        <input type="text" id="job9" name="jul6" placeholder="Question">
+                        
+
+                        <button type="button" class="hiddenbox">Job-10</button>                                          
+                        <input type="text" id="job10" name="jin10" placeholder="Question">
+                       
+
+                    </div>
+                  </div>
+            </div>
+        </div>        
+
+            <input type="submit" value="SUBMIT" class="btn">
+           
+    </form>
+    </body>
+    <script>
+        var coll = document.getElementsByClassName("hiddenbox");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+        </script>
+
+    </html>
+    <%- include("./partials/footer") %>    
+

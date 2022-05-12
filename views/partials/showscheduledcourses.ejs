@@ -1,0 +1,24 @@
+<% for(var i=0;i<schedules.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=schedules[i].category_name%></td>
+    <td><%=schedules[i].course_name%></td>
+    <td><%=schedules[i].course_type%></td>
+    <td><%=schedules[i].country%></td>
+    <td><%=schedules[i].city%></td>
+    <td><del><%=schedules[i].base_price%></del>/<%=schedules[i].special_price%></td>
+    <td><%=schedules[i].course_stage%></td>
+    <td><%=schedules[i].status%></td>
+    
+    <td>
+        <a href='/edit_schedules/<%=schedules[i]._id%>/<%=schedules[i].course_name%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+    
+        <a href='/delete_schedules/<%=schedules[i]._id%>/<%=schedules[i].course_name%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr>
+<%}%>

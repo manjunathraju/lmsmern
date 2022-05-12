@@ -1,0 +1,193 @@
+<%- include("./partials/header")  %>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <style>
+    
+    body {
+      font-family: Arial;
+      font-size: 17px;
+      padding: 8px;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    .row {
+      display: -ms-flexbox; /* IE10 */
+      display: flex;
+      -ms-flex-wrap: wrap; /* IE10 */
+      flex-wrap: wrap;
+      margin: 0 -16px;
+    }
+    
+    .col-25 {
+      -ms-flex: 25%; /* IE10 */
+      flex: 25%;
+    }
+    
+    .col-50 {
+      -ms-flex: 50%; /* IE10 */
+      flex: 50%;
+    }
+    
+    .col-75 {
+      -ms-flex: 75%; /* IE10 */
+      flex: 75%;
+    }
+    
+    .col-25,
+    .col-50,
+    .col-75 {
+      padding: 0 16px;
+    }
+    
+    .container-fluid {
+      background-color: #f2f2f2;
+      padding: 5px 20px px 20px;
+      border: 1px solid lightgrey;
+      border-radius: 3px;
+    }
+    
+    input[type=text] {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    
+    label {
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .icon-container {
+      margin-bottom: 20px;
+      padding: 7px 0;
+      font-size: 24px;
+    }
+    
+    .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      
+      border: none;
+      width: 100%;
+    
+      cursor: pointer;
+      font-size: 17px;
+    }
+    
+    .btn:hover {
+      background-color: #45a049;
+    }
+     
+    .btncancel {
+      background-color: hsl(2, 95%, 34%);
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      width: 100%;
+   
+      cursor: pointer;
+      font-size: 17px;
+    }
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+      .row {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
+    }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+    <form action="/offerpopdataupdate/<%=offerdata._id%>" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+      <h1 id="data" style="display: none;"><%=data%></h1>
+        <div class="container-fluid"> 
+            <div class="row" style="margin-bottom: 30px;">
+              <div class="col-50">
+            <h3> Add Offer Popup   </h3>
+            <!-- <label for="fname">Offer Title </label>
+            <input type="text" id="offertitle" name="offertitle" placeholder="Coronavirus COVID-19 Recession:">
+
+            <label for="fname" >Offer Description </label>
+            <input type="text" id="offerdescription" name="offerdescription" placeholder="RECESSION TIME: Now Is The Best Time To Prepare For the Worst Coming"> -->
+       
+            <label for="OfferImage" class="form-label">Offer PopUP Image</label>
+            <input class="form-control" id="offerpopimage" type="file"  name='offerpopimage' accept="image/png, image/gif, image/jpeg , image/jpg,image/PNG, image/GIF, image/JPEG , image/JPG, image/webp , image/WEBP">
+            <small id="emailHelp" class="form-text" >Note: Upload Image files only</small>
+            <label for="imagename" ><%=offerdata.Offerimage%> </label>
+
+            <label for="Choose Country">Choose Country</label>
+            <select name="country" id="country" style="width: 100%;"></select>
+            <label for="imagename" ><%=offerdata.country%> </label>
+
+            <label for="Status">Status</label>
+            
+            <select name="status" id="status" style="width: 100%;
+            height: 5vh;">
+           
+            <option value="ENABLE">Enable</option>
+            <option value="DISABLE">Disable </option>
+        </select>  
+    </div>  
+</div>
+</div> 
+    
+
+<input type="submit" value="SUBMIT" class="btn">
+            
+<input type="submit" value="Cancel" class="btncancel">
+
+</form>              
+
+</body>
+<script>
+   ////getting country data to select dropdown here
+var data=document.getElementById("data").innerText;
+var array=data.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('country');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+ 
+
+
+</script>
+
+</script>
+</html>
+<%-  %> 

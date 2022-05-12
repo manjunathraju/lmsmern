@@ -1,0 +1,124 @@
+<%- include("./partials/header") %>
+<style>
+  body{
+    background-color: black;
+  }
+  .styled-table {
+    background-color: blanchedalmond;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>
+<div class="container-fluid" style="background-color: white;">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+      <h3>Course orders</h3>
+
+
+      <hr size="3">
+      <div class="searchbox" style="float: right;">
+        <i class="fas fa-search"></i><input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Search for orderid.." title="Type in a name">
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+
+
+<table class="styled-table" id="myTable">
+  <thead>
+      <tr>
+          <th>SID</th>
+          <th>Order Id</th>
+          <th>Invoice Id</th>
+          <th>Transaction Id </th>
+          <th>Course Code</th>
+          <th>No of Learners</th>
+          <th>Learner EmailId</th>
+          <th>Order Date</th>
+      </tr>
+  </thead>
+  <tbody id="data" >
+      
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<script>
+  getData();
+  async function getData(){
+    fetch('/get_courseorders',{method:'get'})
+    .then(response=>response.json())
+    .then(data=>{
+      if(data.length>0){
+        var temp=""
+        data.forEach((item) => {
+                            temp+="<tr>";
+                            temp+="<td>"+item.sid+"</td>";
+                            temp+="<td>"+item.order_id+"</td>";
+                            temp+="<td>"+item. invoice_id+"</td>";
+                            temp+="<td>"+item.transaction_id+"</td>";
+                            temp+="<td>"+item.course_code+"</td>";
+                            temp+="<td>"+item.learner_count+"</td>";
+                            temp+="<td>"+item.email+"</td>";
+                            temp+="<td>"+item.order_date+"</td></tr>";
+                            
+                        });
+                        document.getElementById("data").innerHTML=temp;
+      }
+    })
+  }
+  function searchfunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+
+<%- include("./partials/footer") %>

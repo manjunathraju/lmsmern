@@ -1,0 +1,319 @@
+<%- include("./partials/header") %>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+    <!-- Theme included stylesheets -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <style>
+
+ 
+        body {
+          font-family: Arial;
+          font-size: 17px;
+          padding: 8px;
+        }
+        
+        * {
+          box-sizing: border-box;
+        }
+        
+        .row {
+          display: -ms-flexbox; /* IE10 */
+          display: flex;
+          -ms-flex-wrap: wrap; /* IE10 */
+          flex-wrap: wrap;
+          margin: 0 -16px;
+        }
+        
+        .col-25 {
+          -ms-flex: 25%; /* IE10 */
+          flex: 25%;
+        }
+        
+        .col-50 {
+          -ms-flex: 50%; /* IE10 */
+          flex: 50%;
+        }
+        
+        .col-75 {
+          -ms-flex: 75%; /* IE10 */
+          flex: 75%;
+        }
+        
+        .col-25,
+        .col-50,
+        .col-75 {
+          padding: 0 16px;
+        }
+        
+        .container-fluid {
+          background-color: #f2f2f2;
+          padding: 5px 20px px 20px;
+          border: 1px solid lightgrey;
+          border-radius: 3px;
+        }
+        
+        input[type=text] {
+          width: 100%;
+          margin-bottom: 20px;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+        }
+        
+        label {
+          margin-bottom: 10px;
+          display: block;
+        }
+        .icon-container {
+      margin-bottom: 20px;
+      padding: 7px 0;
+      font-size: 24px;
+    }
+    
+    .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      
+      border: none;
+      width: 100%;
+    
+      cursor: pointer;
+      font-size: 17px;
+    }
+    
+    .btn:hover {
+      background-color: #45a049;
+    }
+    
+    a {
+      color: #2196F3;
+    }
+    
+    hr {
+      border: 1px solid lightgrey;
+    }
+    
+    span.price {
+      float: right;
+      color: grey;
+    }
+    
+    .btncancel {
+      background-color: hsl(2, 95%, 34%);
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      width: 100%;
+   
+      cursor: pointer;
+      font-size: 17px;
+    }
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+      .row {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
+    }
+    </style>
+    </head>
+    <body>
+      
+    <h2> ABOUT US </h2>
+    <form action="/aboutdata" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+    
+        <div class="container-fluid" style="background-color: rgba(124, 176, 185, 0.822);"> 
+            <div class="row" style="margin-bottom: 150px;">
+              
+                
+                <h3>Career Information </h3>
+                <label for="fname">About Us Title </label>
+                <input type="text" id="aboutustitle" name="aboutustitle" placeholder="">
+                
+                <div class="col-sm-4">About US
+                <div id="editor1"> </div>
+                
+                <input type="hidden" name="aboutus" id="aboutus">
+            </div>
+       
+
+            <div class="col-sm-4" >Mission & Vision  
+            <div id="editor2">
+            </div>
+            <input type="hidden" name="mission" id="mission">
+            </div>
+    
+  
+            <div class="col-sm-4" >Who We Are   
+            <div id="editor3">
+            </div>
+                <input type="hidden" name="who" id="who">
+
+
+              </div>  
+            </div>
+
+              <label for="fname" >Meta Title </label>
+              <textarea id="metatitle" name="metatitle" rows="4" cols="50">
+            </textarea>
+                <label for="fname">Meta Description </label>
+                <textarea id="metadesc" name="metadesc" rows="4" cols="50">
+                </textarea>
+        </div>    
+                <div class="container-fluid" style="background-color: rgba(125, 221, 195, 0.788);">
+                    <div class="row" style="margin-bottom: 50px;">
+                        <h3>Our Clients and Delegates</h3>
+                        <div class="col-50" >
+                            <p>Description</p>
+                            <textarea id="clientanddeligation" name="clientanddeligation" rows="4" cols="50">
+                            </textarea>
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label"> Image</label>
+                                <input class="form-control" id="clientanddeligationimg" type="file" name="clientanddeligationimg">
+                              </div>
+                    </div>
+                </div>
+                </div>
+
+
+                <div class="container-fluid" style="background-color: rgba(207, 144, 231, 0.493);">
+                    <div class="row" style="margin-bottom: 50px;">
+                        <h3>OUR TRAINER   </h3>
+                        <div class="col-50" >
+                            <p>Description</p>
+                            <textarea id="trainerdesc" name="trainerdesc" rows="4" cols="50">
+                            </textarea>
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label"> Image</label>
+                                <input class="form-control" id="trainerdescimg" type="file" name="trainerdescimg">
+                              </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" style="background-color: rgba(180, 144, 162, 0.493);">
+                <div class="row" style="margin-bottom: 50px;">
+                    <h3>OUR LOCATIONS   </h3>
+                    <div class="col-50" >
+                        <p>Description</p>
+                        <textarea id="ourlocationdec" name="ourlocationdec" rows="4" cols="50">
+                        </textarea>
+
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label"> Image</label>
+                            <input class="form-control" id="ourlocationdecimg" type="file" name="ourlocationdecimg">
+                          </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid" style="background-color: rgba(153, 60, 76, 0.384);">
+            <div class="row" style="margin-bottom: 50px;">
+                <h3>IN-HOUSE AND BESPOKE TRAINING   </h3>
+                <div class="col-50" >
+                    <p>Description</p>
+                    <textarea id="inhousedec" name="inhousedec" rows="4" cols="50">
+                    </textarea>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label"> Image</label>
+                        <input class="form-control" id="inhousedecimg" type="file" name="inhousedecimg">
+                      </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: rgba(155, 197, 165, 0.623);">
+        <div class="row" style="margin-bottom: 50px;">
+            <h3>CONSULTANCY AND CUSTOMIZED TRAINING </h3>
+            <div class="col-50">
+                <p>Description</p>
+                <textarea id="consdec" name="consdec" rows="4" cols="50">
+                </textarea>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label"> Image</label>
+                    <input class="form-control" id="consdecimg" type="file" name="consdecimg">
+                  </div>
+        </div>
+    </div>
+</div>
+
+            <input type="submit" value="SUBMIT" class="btn">
+           
+          </form>
+    </body>
+            <script>
+               
+               
+                    var toolbarOptions = [
+                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    ['blockquote', 'code-block'],
+                    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                    [{ 'direction': 'rtl' }],                         // text direction
+                    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'font': [] }],
+                    [{ 'align': [] }],
+
+                    ['clean']                                         // remove formatting button
+                    ];
+
+                   
+                    var quill1 = new Quill('#editor1', {
+                    modules: {
+                    toolbar: toolbarOptions
+                    },
+                    theme: 'snow'
+                    });
+                    
+                    var quill2=new Quill('#editor2',{
+                    modules:{
+                    toolbar:toolbarOptions
+                         },
+                    theme:'snow'
+                      })
+                    var quill3=new Quill('#editor3',{
+                    modules:{
+                    toolbar:toolbarOptions
+                },
+                    theme:'snow'
+            })
+
+                     var form= document.querySelector("form");
+                    var input1 = document.getElementById('aboutus');
+                    var input2 = document.getElementById('mission');
+                    var input3 = document.getElementById('who');
+                    form.addEventListener('submit', function(e){
+                    input1.value = quill1.root.innerText;
+                    input2.value = quill2.root.innerText;
+                    input3.value = quill3.root.innerText;
+                    console.log(input1.value,input2.value,input3.value)
+                    });
+                   
+            </script>
+
+    </html>
+    <%- %>

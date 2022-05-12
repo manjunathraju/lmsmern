@@ -1,0 +1,67 @@
+<%- include("./partials/header") %>
+
+<div class="container mt-3">
+   <div align='center'>
+    <h2>Welcome Admin</h2>
+   </div>
+    <!-- <h2>Welcome <%= user.email %> </h2> -->
+    
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+                <div class="card-header">Courses</div>
+                <div class="card-body">
+                  <h3 class="card-title">Courses Running</h3>
+                  <h1 class="card-text">100+</h1><!--here we add total number of courses in our db dynamically-->
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card text-white bg-success mb-3" style="max-width: 25rem;">
+                <div class="card-header">Countries</div>
+                <div class="card-body">
+                  <h3 class="card-title">Total Countries Enabled</h3>
+                  <h1 class="card-text">192+</h1><!--here we add total number of countries in our db dynamically-->
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card text-white bg-danger mb-3" style="max-width: 25rem;">
+                <div class="card-header">Offers Running</div>
+                <div class="card-body">
+                  <h3 class="card-title">Offers Enabled</h3>
+                  <h1 class="card-text">100+</h1> <!--here we add total number of offers in our db dynamically-->
+                </div>
+              </div>
+        </div>
+       
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
+                <div class="card-header">Customers</div>
+                <div class="card-body">
+                  <h3 class="card-title">Total Customers</h3>
+                  <h1 class="card-text">
+                      100+
+                 </h1> <!--here we add total number of customers in our db dynamically-->
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3" style="max-width: 25rem;">
+                <div class="card-header">Trainers</div>
+                <div class="card-body">
+                  <h3 class="card-title">Total Trainers</h3>
+                  <h1 class="card-text">100+</h1> <!--here we add total number of customers in our db dynamically-->
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<%- include("./partials/footer") %>

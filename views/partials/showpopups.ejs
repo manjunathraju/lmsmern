@@ -1,0 +1,20 @@
+<% for(var i=0;i<data.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=data[i].Offerimage%></td>
+    <td><%=data[i].country%></td>
+   
+    <td><%=data[i].status%></td>
+   
+    <td>
+        <a href='/edit_popup/<%=data[i]._id%>/<%=data[i].Offerimage%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+    
+        <a href='/delete_popup/<%=data[i]._id%>/<%=data[i].Offerimage%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr>
+<%}%>

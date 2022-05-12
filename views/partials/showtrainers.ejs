@@ -1,0 +1,20 @@
+<% for(var i=0;i<data.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=data[i].trainer_name%></td>
+    <td><%=data[i].trainer_course%></td>
+   
+    <td><%=data[i].status%></td>
+   
+    <td>
+        <a href='/edit_trainer/<%=data[i]._id%>/<%=data[i].trainer_name%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+    
+        <a href='/delete_trainer/<%=data[i]._id%>/<%=data[i].trainer_name%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr>
+<%}%>

@@ -1,0 +1,86 @@
+<%- include("./partials/header") %>
+
+ 
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      </style>
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-md-6">
+         
+            <h3>Reviews</h3>
+
+          <div class="searchbox" style="float: right;">
+            <i class="fas fa-search"></i> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="addbutton" style="float: right;padding: 1px 0px 10px 0px;">
+  
+            <a href="/addreview" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Add Reviews</a>
+          </div>
+        </div>
+      </div>
+     
+       
+
+       
+
+      <table class="styled-table" id="myTable">
+        <thead>
+            <tr>
+                <th>SID</th>
+                <th> Reviewer Name</th>
+                <th>Job Desc</th>
+                <th>Ratings</th>
+                <th>Status</th>
+                <th>Action</th>
+      
+      
+            </tr>
+        </thead>
+        <tbody id="data" >
+            <%- include("./partials/showreview") %>
+          </tbody>  
+      </table>
+
+
+     
+
+      <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+        </script>
+     
+
+     <%- include("./partials/footer") %>

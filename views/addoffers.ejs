@@ -1,0 +1,193 @@
+<%- include("./partials/header") %>
+<head>
+  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
+</head>
+<style>
+    body{
+      background-color: black;
+    }
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+label{
+    font-size: large;
+}
+</style>
+<!-- <div class="container-fluid" style="background-color: darkgray;">
+    <div class="row">
+        <div class="com-sm-12">
+            <button type="button" onclick="Save()" class="btn btn-success">Save</button>
+            <button type="button" onclick="Cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+            <h3>Add Offer</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+           
+            <form action="/offerdata" method="POST" onsubmit="addoffers(event,this)" style="padding-top:10px;">
+              <div class="row">
+         
+              <div class="col-sm-6">
+                <label for="offername">Offer Name</label>
+                <input type="text" id="offername" name="offername" placeholder="Offer name" required>
+            
+                <label for="couponcode">Coupon Code</label>
+                <input type="text" id="couponcode" name="couponcode" placeholder="Coupon code" required>
+            
+                <label for="category">Choose Category</label>
+                <select name="category" id="category" multiple style="width: 100%;">
+                  <option value="AllCategory">All </option>
+                </select>
+                <label for="type">Course Type</label>
+                <select id="type" name="type">
+                  <option value="LV1">LVC Training</option>
+                  <option value="CT1">Classroom Training</option>
+                </select>
+              </div>
+                <div class="col-sm-6">
+
+                  <label for="status">Status</label>
+                  <select id="status" name="status">
+                    <option value="enable">Enable</option>
+                    <option value="disable">Disable</option>
+                  </select>
+                  
+                  <label for="applicablecountries">Applicable in</label>
+                  <select id="applicablecountries" multiple name="applicablecountries" >
+                    <option value="AllCountry">All </option>
+                    
+                  </select>
+  
+                  <label for="offermode">Offer Mode</label>
+                  <select id="offermode" name="offermode">
+                    <option value="discount">Discount Offer</option>
+                    <option value="flat">Flat off</option>
+                  </select>
+  
+                  <label for="discountamount">Discount(%)/Price(Currency)*</label>
+                  <input type="text" id="discountamt" name="discountamt"  required>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label for="startdate">Start date</label><br>
+                      <input type="date" id="startdate" name="startdate"><br>
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="enddate">End date</label><br>
+                        <input type="date" id="enddate" name="enddate">
+                      </div>
+                  </div>
+                 
+                </div>
+              </div>
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/offers'" value="Cancel">
+              </form>
+              <h1 id="data" style="display: none;"><%=data%></h1>
+              <p id="cntdata" style="display: none;"><%=countrydata%></p>
+              
+
+
+        </div>
+        
+    </div>
+
+</div>
+
+<script>
+// function addoffers(e){
+//     e.preventDefault();
+//     const offername=document.getElementById('offername').value.toUpperCase();
+//     const couponcode=document.getElementById('couponcode').value.toUpperCase();
+//     const category=document.getElementById('category').value.toUpperCase();
+//     const type=document.getElementById('type').value;
+//     const status=document.getElementById('status').value.toUpperCase();
+//     const applicablecountries=document.getElementById('applicablecountries').value;
+//     const offermode=document.getElementById('offermode').value;
+//     const discountamt=document.getElementById('discountamt').value.toUpperCase();
+//     const startdate=document.getElementById('startdate').value;
+//     const enddate=document.getElementById('enddate').value;
+//    const data={offername,couponcode,category,type,status,applicablecountries,offermode,discountamt,startdate,enddate};
+//    const options={
+//     method:'POST',
+//     headers:{
+//        'Content-Type':'application/json'
+//     },
+//    body:JSON.stringify(data)
+//    }
+//    fetch('/offerdata',options)
+   
+   
+// }
+
+</script>
+<script>
+   ////getting category data to select dropdown here
+var data=document.getElementById("data").innerText;
+var array=data.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('category');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+ 
+</script>
+<script>
+  var applicablecountries=document.getElementById("cntdata").innerText;
+var array=applicablecountries.split(',');
+for(var i=0;i<array.length;i++){
+    var select=document.getElementById('applicablecountries');
+    var option=document.createElement("option");
+    option.text=array[i];
+    select.add(option);
+}
+</script>
+<script>
+  $("#applicablecountries").chosen({
+  no_results_text: "Oops, nothing found!"
+})
+$("#category").chosen({
+  no_results_text: "Oops, nothing found!"
+})
+</script>
+
+<%- include("./partials/footer") %>

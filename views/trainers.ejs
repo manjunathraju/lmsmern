@@ -1,0 +1,112 @@
+<%- include("./partials/header") %>
+<style>
+  body{
+    background-color: black;
+  }
+  .styled-table {
+    background-color: rgb(13, 235, 61);
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>
+<div class="container" style="background-color: white;">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+     
+        <h3>Trainers</h3>
+  
+
+
+      <hr size="3">
+      <div class="searchbox" style="float: right;">
+        <i class="fas fa-search"></i><input type="text" id="myInput" onkeyup="searchfunction()" placeholder="Search for Trainer names." title="Type in a name">
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="addbutton" style="float: left;margin-top: -30px;">
+
+  <a href="/addtrainers" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">Add Trainers</a>
+</div>
+<br>
+<br>
+
+
+<table class="styled-table" id="myTable">
+  <thead>
+      <tr>
+          <th>SID</th>
+          <th>Trainer Name</th>
+          <th>Course Name</th>
+          
+        
+          <th>Trainer Status</th>
+          <th>Action</th>
+         
+      </tr>
+  </thead>
+  <tbody id="data" >
+    <%- include("./partials/showtrainers") %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<script>
+ 
+  function searchfunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+</script>
+
+
+<%- include("./partials/footer") %>

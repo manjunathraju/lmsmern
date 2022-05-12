@@ -1,0 +1,22 @@
+<% for(var i=0;i<datacontact.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=datacontact[i].countryname%></td>
+    <td><%=datacontact[i].contactnumber%></td>
+    <td><%=datacontact[i].contactstatus%>
+         
+    </td>
+    
+
+    <td>
+        <a href='/edit_cnt/<%=datacontact[i]._id%>/<%=datacontact[i].countryname%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+
+        <a href='/delete_cnt/<%=datacontact[i]._id%>/<%=datacontact[i].countryname%>/<%=datacontact[i].contactnumber%>/<%=datacontact[i].contactstatus%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr> 
+<%}%>

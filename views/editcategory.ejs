@@ -1,0 +1,142 @@
+<%- include("./partials/header") %>
+<style>
+    body{
+      background-color: black;
+    }
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+label{
+    font-size: large;
+}
+</style>
+<!-- <div class="container-fluid" style="background-color: darkgray;">
+    <div class="row">
+        <div class="com-sm-12">
+            <button type="button" onclick="Save()" class="btn btn-success">Save</button>
+            <button type="button" onclick="Cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+            <h3>Add Categories</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+          <!-- onsubmit="addcustomers(event,this)" -->
+            <form action="/updatecategory/<%=categorydata._id%>" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+
+             
+
+                <label for="categoryname">Category Name</label>
+                <input type="text" id="categoryname" name="categoryname" placeholder="Category name " value="<%=categorydata.category_name%>" required>
+            
+                <label for="categorycode">Category Code</label>
+                <input type="text" id="categorycode" name="categorycode" placeholder="Category code" value="<%=categorydata.category_code%>" required>
+
+                <label for="categorytext">Category Text</label>
+                <br>
+                <textarea id="categorytext" name="categorytext" rows="4" cols="30" placeholder="Category Data"><%=categorydata.category_text%></textarea>
+
+            <br>
+
+               
+
+                
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                  <option value="ENABLE">Enable</option>
+                  <option value="DISABLE">Disable</option>
+                </select>
+
+                <label for="categoryimage">Category Image</label><br>
+                <input type="file" id="file" name="file" required>
+
+
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/categories'" value="Cancel">
+              </form>
+
+
+        </div>
+        
+    </div>
+
+</div>
+<script>
+ 
+  
+
+
+
+// function addcustomers(e){
+//     e.preventDefault();
+//     const customertype=document.getElementById('customertype').value.toUpperCase();
+//     const gender=document.getElementById('gender').value.toUpperCase();
+//     const customername=document.getElementById('customername').value.toUpperCase();
+//     const customeremail=document.getElementById('customeremail').value;
+//     const password=document.getElementById('password').value;
+//     const cpassword=document.getElementById('cpassword').value;
+//     const accounttype=document.getElementById('accounttype').value;
+//     const mobile=document.getElementById('mobile').value;
+//     const country=document.getElementById('country').value;
+//     const state=document.getElementById('state').value;
+//     const accesstype=document.getElementById('accesstype').value;
+//     const examaccess=document.getElementById('examaccess').value;
+//     const startedate=document.getElementById('startedate').value;
+//     const expdate=document.getElementById('expdate').value;
+//     const category=document.getElementById('category').value;
+//     const status=document.getElementById('status').value;
+//     const image=document.getElementById('file').value;
+  
+
+//    const data={customertype,gender,customername,customeremail,password,cpassword,accounttype,mobile,country,state,accesstype,examaccess,startedate,expdate,category,status,image};
+//    const options={
+//     method:'POST',
+//     headers:{
+//        'Content-Type':'application/json'
+//     },
+//    body:JSON.stringify(data)
+//    }
+//    fetch('/customerdata',options)
+   
+   
+// }
+
+</script>
+
+<%- include("./partials/footer") %>

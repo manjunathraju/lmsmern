@@ -1,0 +1,20 @@
+<% for(var i=0;i<dataaddress.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=dataaddress[i].address%></td>
+    <td><%=dataaddress[i].addresscontactnumber%></td>
+    <td><%=dataaddress[i].addressstatus%></td>
+    
+
+    <td>
+        <a href='/edit_add/<%=dataaddress[i]._id%>/<%=dataaddress[i].address%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+
+        <a href='/delete_add/<%=dataaddress[i]._id%>/<%=dataaddress[i].address%>/<%=dataaddress[i].addresscontactnumber%>/<%=dataaddress[i].addressstatus%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr> 
+<%}%>

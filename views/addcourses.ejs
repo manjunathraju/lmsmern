@@ -1,0 +1,3434 @@
+<%- include("./partials/header") %>
+<style>
+    body {
+      font-family: Arial;
+      font-size: 17px;
+     
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    .row {
+      display: -ms-flexbox; /* IE10 */
+      display: flex;
+      -ms-flex-wrap: wrap; /* IE10 */
+      flex-wrap: wrap;
+      margin: 0 -16px;
+    }
+    
+    .col-25 {
+      -ms-flex: 25%; /* IE10 */
+      flex: 25%;
+    }
+    
+    .col-50 {
+      -ms-flex: 50%; /* IE10 */
+      flex: 50%;
+    }
+    
+    .col-75 {
+      -ms-flex: 75%; /* IE10 */
+      flex: 75%;
+    }
+    
+    .col-25,
+    .col-50,
+    .col-75 {
+      padding: 0 16px;
+    }
+    
+    .container-fluid {
+      background-color: #f2f2f2;
+      padding: 5px 20px 15px 20px;
+      border: 1px solid lightgrey;
+      border-radius: 3px;
+    }
+    
+    input[type=text] {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+    
+    label {
+      margin-bottom: 10px;
+      display: block;
+    }
+    
+    .icon-container {
+      margin-bottom: 20px;
+      padding: 7px 0;
+      font-size: 24px;
+    }
+    
+    .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      
+      border: none;
+      width: 100%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+    }
+    
+    .btn:hover {
+      background-color: #45a049;
+    }
+    
+    a {
+      color: #2196F3;
+    }
+    
+    hr {
+      border: 1px solid lightgrey;
+    }
+    
+    span.price {
+      float: right;
+      color: grey;
+    }
+    
+    .btncancel {
+      background-color: hsl(2, 95%, 34%);
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      width: 100%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+    }
+    #cscontent2{
+        border-top: 1px solid black;
+    }
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+      .row {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
+      .ql-container.ql-snow{
+          border: 1px solid black;
+      }
+    }
+    </style>
+
+    <form action="/coursesdata" method="POST"  style="padding-top:10px;" enctype="multipart/form-data">
+
+            <div class="container-fluid">  
+                <div class="row">
+                  
+                    
+                    <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+                        <h3>Add Courses</h3>
+                    </div>
+                   
+                        <h1 id="data" style="display: none;"><%=data%></h1>
+                        
+                    
+                    <div class="col-sm-6">
+                    <label for="coursename"> Course Name</label>
+                    <input type="text" id="coursename" name="coursename" placeholder="">
+
+    
+                   <label for="Course Code">Course Code</label>
+                    <input type="text" id="coursecode" name="coursecode" placeholder="">
+    
+                    <label for="course htag title"> Course Htag Title</label>
+                    <input type="text" id="coursehtag" name="coursehtag" placeholder="">
+    
+                    <label for="Choose Category">Choose Category</label>
+                    
+                    <select name="category" id="category" style="width: 100%;
+                    height: 5vh;">
+                       
+                      </select>
+                      
+                    
+                        <label for="Course Type">Course Type</label>
+                        <select name="coursetype" id="coursetype" style="width: 100%;
+                    height: 10vh;"  multiple>
+                        <option value="Classroom Training">Classroom Training</option>
+                        <option value="Online Training">Online Training</option>
+                        <option value="Live Virtual Classroom">Live Virtual Classroom</option>
+                      </select>
+                      <small id="emailHelp" class="form-text" >Hold down the Ctrl (windows) / Command (Mac) button to select multiple options</small>
+                     
+                        <label for="Course Regd ID">Course Regd ID</label>
+                        <input type="text" id="courseregid" name="courseregid" placeholder="">
+    
+                        <label for="Ratings">Ratings</label>
+                        <input type="text" id="rating" name="rating" placeholder="">
+    
+                        <label for="Course Reviews">Course Reviews</label>
+                        <input type="text" id="coursereview" name="coursereview" placeholder="">
+    
+                        <label for="Course Review Video URL">Course Review Video URL</label>
+                        <input type="text" id="reviewurl" name="reviewurl" placeholder="">
+    
+                        <label for="Course Schedule Timezone">Course Schedule Timezone</label>
+                        <input type="text" id="coursetimezone" name="coursetimezone" placeholder="">
+    
+                        <label for="Status">Status</label>
+                        <select name="status" id="status" style="width: 100%;height: 5vh;">
+                        <option value="ENABLE">Enable</option>
+                        <option value="DISABLE">Disable </option>
+                       </select> 
+
+                       <br>
+
+                      
+                        <label>
+                            Course Info
+                        </label>
+                        <textarea id="csinfo1" name="csinfo1" rows="10" cols="60" placeholder="About Course"></textarea>
+                         
+                    
+                 </div>
+                 <div class="col-sm-6">
+                    
+                    <label for="Country Meta Title">Country Meta Title</label>
+                    <input type="text" id="countrymetatitle" name="countrymetatitle" placeholder="">
+                    
+                    <label for="Country Meta Description">Country Meta Description</label>
+                    <input type="text" id="countrymetadesc" name="countrymetadesc" placeholder="">
+
+                    <label for="city Meta Title">City Meta Title</label>
+                    <input type="text" id="citymetatitle" name="citymetatitle" placeholder="">
+                    
+                    <label for="city Meta Description">City Meta Description</label>
+                    <input type="text" id="citymetadesc" name="citymetadesc" placeholder="">
+                       
+                    <br>
+                      
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Study Materials</label>
+                    <input class="form-control" type="file" id="studymaterial" name="studymaterial" accept=".zip,.rar,.7zip">
+                    <small id="emailHelp" class="form-text" >Note: Upload ZIP files only (10 Mb Max).</small>
+                  </div>
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Course Agenda</label>
+                    <input class="form-control" type="file" id="formFile"  name='courseagenda' accept="application/pdf" >
+                    <small id="emailHelp" class="form-text" >Note: Upload PDF files only</small>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Course Image</label>
+                    <input class="form-control" id="formFile" type="file"  name='courseimage' accept="image/png, image/gif, image/jpeg , image/jpg,image/PNG, image/GIF, image/JPEG , image/JPG, image/webp , image/WEBP">
+                    <small id="emailHelp" class="form-text" >Note: Upload Image files only</small>
+                  </div>
+                   
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Banner Image</label>
+                    <input class="form-control" id="formFile" type="file"  name='bannerimage' accept="image/png, image/gif, image/jpeg , image/jpg,image/PNG, image/GIF, image/JPEG , image/JPG, image/webp , image/WEBP">
+                    <small id="emailHelp" class="form-text" >Note: Upload Image files only</small>
+                  </div>
+                   
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Banner Image URL</label>
+                    <input class="form-control" id="bannerimageurl" type="text" name="bannerimageurl">
+                  </div>
+                   
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Company Image</label>
+                    <input class="form-control" id="formFile" type="file" name="companyimage" accept="image/png, image/gif, image/jpeg , image/jpg,image/PNG, image/GIF, image/JPEG , image/JPG, image/webp , image/WEBP">
+                    <small id="emailHelp" class="form-text" >Note: Upload Image files only</small>
+                  </div>
+                 
+                    <div class="mb-3">
+                    <label for="formFile" class="form-label">Certification Image</label>
+                    <input class="form-control" id="formFile" type="file" name="certificateimage" accept="image/png, image/gif, image/jpeg , image/jpg,image/PNG, image/GIF, image/JPEG , image/JPG, image/webp , image/WEBP">
+                    <small id="emailHelp" class="form-text" >Note: Upload Image files only</small>
+                    </div> 
+                   
+                    
+                 
+                  
+                </div>   
+                </div>
+                </div>
+                
+
+                <div class="container-fluid" style="background-color: bisque;">
+                    <div class="row">
+                        
+                        <div class="col-sm-4">
+                            <label>Online Training Key Features</label>
+                        <h5>Key Feature 1</h5>
+                        <textarea id="key1" name="key1" rows="4" cols="30" placeholder="Online Training  Key Feature 1"></textarea>
+                            <!-- <div id="key1"></div>                                
+                            <input type="hidden" name="key1" id="key1" > -->
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            <label>LVC Key Features</label>
+                            <h5>Key Feature 1</h5>
+                            <textarea id="key2" name="key2" rows="4" cols="30" placeholder="LVC Key Feature 1"></textarea>
+ 
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            <label>Classroom Training Key Features</label>
+                        <h5>Key Feature 1</h5>
+                        <textarea id="key3" name="key3" rows="4" cols="30" placeholder="Class room Key Feature 1"></textarea>
+ 
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 100px;">
+                        
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 2</h5>
+                        <textarea id="key4" name="key4" rows="4" cols="30" placeholder="Online Training  Key Feature 2"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                           
+                            <h5>Key Feature 2</h5>
+                            <textarea id="key5" name="key5" rows="4" cols="30" placeholder="LVC Key Feature 2"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 2</h5>
+                        <textarea id="key6" name="key6" rows="4" cols="30" placeholder="Class room Key Feature 2"></textarea>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 100px;">
+                        
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 3</h5>
+                        <textarea id="key7" name="key7" rows="4" cols="30" placeholder="Online Training  Key Feature 3"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                           
+                            <h5>Key Feature 3</h5>
+                            <textarea id="key8" name="key8" rows="4" cols="30" placeholder="LVC Key Feature 3"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 3</h5>
+                        <textarea id="key9" name="key9" rows="4" cols="30" placeholder="Class room Key Feature 3"></textarea>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 100px;">
+                        
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 4</h5>
+                        <textarea id="key10" name="key10" rows="4" cols="30" placeholder="Online Training  Key Feature 4"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                           
+                            <h5>Key Feature 4</h5>
+                            <textarea id="key11" name="key11" rows="4" cols="30" placeholder="LVC Key Feature 4"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 4</h5>
+                        <textarea id="key12" name="key12" rows="4" cols="30" placeholder="Class room Key Feature 4"></textarea>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 100px;">
+                        
+                        <div class="col-sm-4">
+                            
+                        <h5>key Feature 5</h5>
+                        <textarea id="key13" name="key13" rows="4" cols="30" placeholder="Online Training  Key Feature 5"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                           
+                            <h5>key Feature 5</h5>
+                            <textarea id="key14" name="key14" rows="4" cols="30" placeholder="LVC Key Feature 5"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            
+                        <h5>key Feature 5</h5>
+                        <textarea id="key15" name="key15" rows="4" cols="30" placeholder="Class room Key Feature 5"></textarea>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 100px;">
+                        
+                        <div class="col-sm-4">
+                            
+                        <h5>Key feature 6</h5>
+                        <textarea id="key16" name="key16" rows="4" cols="30" placeholder="Online Training  Key Feature 6"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                           
+                            <h5>Key feature 6</h5>
+                            <textarea id="key17" name="key17" rows="4" cols="30" placeholder="LVC Key Feature 6"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            
+                        <h5>Key feature 6</h5>
+                        <textarea id="key18" name="key18" rows="4" cols="30" placeholder="Class room Key Feature 6"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 100px;">
+                        
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 7</h5>
+                        <textarea id="key19" name="key19" rows="4" cols="30" placeholder="Online Training  Key Feature 7"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                           
+                            <h5>Key Feature 7</h5>
+                            <textarea id="key20" name="key20" rows="4" cols="30" placeholder="LVC Key Feature 7"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 7</h5>
+                        <textarea id="key21" name="key21" rows="4" cols="30" placeholder="Class room Key Feature 7"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 100px;margin-bottom: 100px;">
+                        
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 8</h5>
+                        <textarea id="key22" name="key22" rows="4" cols="30" placeholder="Online Training  Key Feature 8"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                           
+                            <h5>Key Feature 8</h5>
+                            <textarea id="key23" name="key23" rows="4" cols="30" placeholder="LVC Key Feature 8"></textarea>
+
+                        </div>
+                       
+                        <div class="col-sm-4">
+                            
+                        <h5>Key Feature 8</h5>
+                        <textarea id="key24" name="key24" rows="4" cols="30" placeholder="Class room Key Feature 8"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row" style="margin-bottom: 90px;">
+                        <div class="col-sm-6">
+                            <label><strong>Eligibility</strong> </label>
+                            <input type="text" name="gqs" id="gqs" style="width:100%;">
+                            <div class="col-sm-4">
+                                <h5>Ans1</h5>
+                                <textarea id="gqsans1" name="gqsans1" rows="8" cols="30" placeholder="Answer 1"></textarea>
+    
+                            </div>
+                        </div>
+                      
+                        <div class="col-sm-6">
+                            <h5><strong>Pre-requisites</strong></h5>
+                            <input type="text" name="gqsans2" id="gqsans2" style="width:100%;">
+                            <!-- <textarea id="gqsans2" name="gqsans2" rows="8" cols="30" placeholder="Answer 2"></textarea> -->
+
+                        
+                        <div class="col-sm-4">
+                            <h5>Ans3</h5>
+                            <textarea id="gqsans3" name="gqsans3" rows="8" cols="30" placeholder="Answer 3"></textarea>
+
+                        </div>
+                    </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="container-fluid" style="background-color:beige;">
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-9">
+                        <label><strong>Course Description</strong></label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" onclick="toggle()" type="checkbox" id="flexSwitchCheckChecked" checked style="width: 70px;height:30px;">
+                            </div>
+                        </div>
+                        <div class="col-sm-6" id="csdesc">
+                            <label> Qs1</label>
+                            <input type="text" placeholder="Question 1" name="csdescq1" id="csdescq1" style="width: 100%;">
+                            <textarea id="csdsca1" name="csdsca1" rows="8" cols="30" placeholder="Answer 1"></textarea>
+                        </div>
+                        <div id="display" style="display: none;"><h2>Toggle To Unhide the Section</h2></div>
+                        <div class="col-sm-6"  id="csdesc1">
+                            <label> Qs2</label>
+                            <input type="text" placeholder="Question 2" name="csdescq2" id="csdescq2" style="width: 100%;">
+                            <textarea id="csdsca2" name="csdsca2" rows="8" cols="30" placeholder="Answer 2"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="csdesc1">
+                            <label> Qs3</label>
+                            <input type="text" placeholder="Question 3" name="csdescq3" id="csdescq3" style="width: 100%;">
+                            <textarea id="csdsca3" name="csdsca3" rows="8" cols="30" placeholder="Answer 3"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="csdesc1">
+                            <label> Qs4</label>
+                            <input type="text" placeholder="Question 4" name="csdescq4" id="csdescq4" style="width: 100%;">
+                            <textarea id="csdsca4" name="csdsca4" rows="8" cols="30" placeholder="Answer 4"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid" style="background-color:rgb(220, 222, 245);">
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-12">
+                        <label><strong>Course Curriculam</strong></label>
+                        </div>
+                        <!-- <div class="col-sm-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" onclick="toggle()" type="checkbox" id="flexSwitchCheckChecked" checked style="width: 70px;height:30px;">
+                            </div>
+                        </div> -->
+                        <div class="col-sm-12" id="cscontent1">
+                            <label><strong> Module 1 Name</strong> </label>
+                            <input type="text" placeholder="Module 1 name" name="m1name" id="m1name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m1t1" id="m1t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m1vl1" id="m1vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m1t2" id="m1t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m1vl2" id="m1vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m1t3" id="m1t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m1vl3" id="m1vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m1t4" id="m1t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m1vl4" id="m1vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m1t5" id="m1t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m1vl5" id="m1vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m1t6" id="m1t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m1vl6" id="m1vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn1">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm1()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m1t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m1t7" id="m1t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m1vl7" id="m1vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m1t8" id="m1t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m1vl8" id="m1vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m1t9" id="m1t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m1vl9" id="m1vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m1t10" id="m1t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m1vl10" id="m1vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m1t11" id="m1t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m1vl11" id="m1vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m1t12" id="m1t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m1vl12" id="m1vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m1t13" id="m1t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m1vl13" id="m1vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m1t14" id="m1t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m1vl14" id="m1vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m1t15" id="m1t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m1vl15" id="m1vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m1t16" id="m1t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m1vl16" id="m1vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m1t17" id="m1t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m1vl17" id="m1vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m1t18" id="m1t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m1vl18" id="m1vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m1t19" id="m1t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m1vl19" id="m1vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m1t20" id="m1t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m1vl20" id="m1vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div id="hidem1topics" style="display: none;"><h2>Toggle To hide Topics</h2></div>
+                        <hr size='10'>
+                        <!--module2 begins-->
+                        <div class="col-sm-12" id="cscontent2" style="margin-top: 20px;">
+                            <label><strong> Module 2 Name</strong> </label>
+                            <input type="text" placeholder="Module 2 name" name="m2name" id="m2name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m2t1" id="m2t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m2vl1" id="m2vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m2t2" id="m2t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m2vl2" id="m2vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m2t3" id="m2t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m2vl3" id="m2vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m2t4" id="m2t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m2vl4" id="m2vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m2t5" id="m2t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m2vl5" id="m2vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m2t6" id="m2t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m2vl6" id="m2vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn2">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm2()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m2t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m2t7" id="m2t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m2vl7" id="m2vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m2t8" id="m2t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m2vl8" id="m2vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m2t9" id="m2t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m2vl9" id="m2vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m2t10" id="m2t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m2vl10" id="m2vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m2t11" id="m2t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m2vl11" id="m2vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m2t12" id="m2t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m2vl12" id="m2vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m2t13" id="m2t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m2vl13" id="m2vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m2t14" id="m2t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m2vl14" id="m2vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m2t15" id="m2t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m2vl15" id="m2vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m2t16" id="m2t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m2vl16" id="m2vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m2t17" id="m2t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m2vl17" id="m2vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m2t18" id="m2t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m2vl18" id="m2vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m2t19" id="m2t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m2vl19" id="m2vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m2t20" id="m2t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m2vl20" id="m2vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <hr size='10'>
+                        <!--modeule2 ends-->
+                        <!--module3 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 3 Name</strong> </label>
+                            <input type="text" placeholder="Module 3 name" name="m3name" id="m3name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m3t1" id="m3t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m3vl1" id="m3vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m3t2" id="m3t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m3vl2" id="m3vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m3t3" id="m3t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m3vl3" id="m3vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m3t4" id="m3t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m3vl4" id="m3vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m3t5" id="m3t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m3vl5" id="m3vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m3t6" id="m3t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m3vl6" id="m3vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn3">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm3()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m3t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m3t7" id="m3t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m3vl7" id="m3vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m3t8" id="m3t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m3vl8" id="m3vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m3t9" id="m3t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m3vl9" id="m3vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m3t10" id="m3t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m3vl10" id="m3vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m3t11" id="m3t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m3vl11" id="m3vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m3t12" id="m3t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m3vl12" id="m3vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m3t13" id="m3t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m3vl13" id="m3vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m3t14" id="m3t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m3vl14" id="m3vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m3t15" id="m3t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m3vl15" id="m3vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m3t16" id="m3t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m3vl16" id="m3vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m3t17" id="m3t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m3vl17" id="m3vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m3t18" id="m3t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m3vl18" id="m3vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m3t19" id="m3t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m3vl19" id="m3vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m3t20" id="m3t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m3vl20" id="m3vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!--module3 ends-->
+                        <hr size='10'>
+                        <!--module4 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 4 Name</strong> </label>
+                            <input type="text" placeholder="Module 4 name" name="m4name" id="m4name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m4t1" id="m4t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m4vl1" id="m4vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m4t2" id="m4t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m4vl2" id="m4vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m4t3" id="m4t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m4vl3" id="m4vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m4t4" id="m4t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m4vl4" id="m4vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m4t5" id="m4t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m4vl5" id="m4vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m4t6" id="m4t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m4vl6" id="m4vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn4">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm4()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m4t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m4t7" id="m4t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m4vl7" id="m4vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m4t8" id="m4t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m4vl8" id="m4vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m4t9" id="m4t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m4vl9" id="m4vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m4t10" id="m4t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m4vl10" id="m4vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m4t11" id="m4t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m4vl11" id="m4vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m4t12" id="m4t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m4vl12" id="m4vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m4t13" id="m4t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m4vl13" id="m4vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m4t14" id="m4t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m4vl14" id="m4vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m4t15" id="m4t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m4vl15" id="m4vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m4t16" id="m4t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m4vl16" id="m4vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m4t17" id="m4t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m4vl17" id="m4vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m4t18" id="m4t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m4vl18" id="m4vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m4t19" id="m4t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m4vl19" id="m4vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m4t20" id="m4t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m4vl20" id="m4vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!--module4 ends-->
+                        <hr size='10'>
+                        <!--module5 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 5 Name</strong> </label>
+                            <input type="text" placeholder="Module 5 name" name="m5name" id="m5name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m5t1" id="m5t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m5vl1" id="m5vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m5t2" id="m5t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m5vl2" id="m5vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m5t3" id="m5t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m5vl3" id="m5vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m5t4" id="m5t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m5vl4" id="m5vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m5t5" id="m5t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m5vl5" id="m5vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m5t6" id="m5t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m5vl6" id="m5vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn5">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm5()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m5t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m5t7" id="m5t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m5vl7" id="m5vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m5t8" id="m5t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m5vl8" id="m5vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m5t9" id="m5t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m5vl9" id="m5vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m5t10" id="m5t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m5vl10" id="m5vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m5t11" id="m5t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m5vl11" id="m5vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m5t12" id="m5t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m5vl12" id="m5vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m5t13" id="m5t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m5vl13" id="m5vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m5t14" id="m5t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m5vl14" id="m5vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m5t15" id="m5t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m5vl15" id="m5vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m5t16" id="m5t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m5vl16" id="m5vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m5t17" id="m5t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m5vl17" id="m5vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m5t18" id="m5t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m5vl18" id="m5vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m5t19" id="m5t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m5vl19" id="m5vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m5t20" id="m5t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m5vl20" id="m5vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!--module5 ends-->
+                        <hr size='10'>
+                        <!--module6 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 6 Name</strong> </label>
+                            <input type="text" placeholder="Module 6 name" name="m6name" id="m6name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m6t1" id="m6t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m6vl1" id="m6vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m6t2" id="m6t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m6vl2" id="m6vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m6t3" id="m6t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m6vl3" id="m6vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m6t4" id="m6t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m6vl4" id="m6vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m6t5" id="m6t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m6vl5" id="m6vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m6t6" id="m6t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m6vl6" id="m6vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn6">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm6()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m6t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m6t7" id="m6t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m6vl7" id="m6vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m6t8" id="m6t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m6vl8" id="m6vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m6t9" id="m6t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m6vl9" id="m6vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m6t10" id="m6t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m6vl10" id="m6vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m6t11" id="m6t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m6vl11" id="m6vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m6t12" id="m6t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m6vl12" id="m6vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m6t13" id="m6t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m6vl13" id="m6vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m6t14" id="m6t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m6vl14" id="m6vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m6t15" id="m6t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m6vl15" id="m6vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m6t16" id="m6t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m6vl16" id="m6vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m6t17" id="m6t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m6vl17" id="m6vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m6t18" id="m6t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m6vl18" id="m6vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m6t19" id="m6t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m6vl19" id="m6vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m6t20" id="m6t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m6vl20" id="m6vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!--module6 ends-->
+                        <hr size='10'>
+                        <!--module7 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 7 Name</strong> </label>
+                            <input type="text" placeholder="Module 7 name" name="m7name" id="m7name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m7t1" id="m7t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m7vl1" id="m7vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m7t2" id="m7t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m7vl2" id="m7vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m7t3" id="m7t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m7vl3" id="m7vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m7t4" id="m7t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m7vl4" id="m7vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m7t5" id="m7t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m7vl5" id="m7vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m7t6" id="m7t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m7vl6" id="m7vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn7">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm7()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m7t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m7t7" id="m7t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m7vl7" id="m7vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m7t8" id="m7t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m7vl8" id="m7vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m7t9" id="m7t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m7vl9" id="m7vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m7t10" id="m7t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m7vl10" id="m7vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m7t11" id="m7t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m7vl11" id="m7vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m7t12" id="m7t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m7vl12" id="m7vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m7t13" id="m7t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m7vl13" id="m7vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m7t14" id="m7t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m7vl14" id="m7vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m7t15" id="m7t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m7vl15" id="m7vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m7t16" id="m7t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m7vl16" id="m7vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m7t17" id="m7t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m7vl17" id="m7vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m7t18" id="m7t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m7vl18" id="m7vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m7t19" id="m7t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m7vl19" id="m7vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m7t20" id="m7t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m7vl20" id="m7vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!--module7 ends-->
+                        <hr size='10'>
+                        <!--module8 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 8 Name</strong> </label>
+                            <input type="text" placeholder="Module 8 name" name="m8name" id="m8name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m8t1" id="m8t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m8vl1" id="m8vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m8t2" id="m8t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m8vl2" id="m8vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m8t3" id="m8t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m8vl3" id="m8vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m8t4" id="m8t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m8vl4" id="m8vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m8t5" id="m8t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m8vl5" id="m8vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m8t6" id="m8t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m8vl6" id="m8vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn8">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm8()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m8t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m8t7" id="m8t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m8vl7" id="m8vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m8t8" id="m8t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m8vl8" id="m8vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m8t9" id="m8t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m8vl9" id="m8vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m8t10" id="m8t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m8vl10" id="m8vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m8t11" id="m8t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m8vl11" id="m8vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m8t12" id="m8t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m8vl12" id="m8vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m8t13" id="m8t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m8vl13" id="m8vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m8t14" id="m8t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m8vl14" id="m8vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m8t15" id="m8t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m8vl15" id="m8vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m8t16" id="m8t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m8vl16" id="m8vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m8t17" id="m8t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m8vl17" id="m8vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m8t18" id="m8t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m8vl18" id="m8vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m8t19" id="m8t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m8vl19" id="m8vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m8t20" id="m8t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m8vl20" id="m8vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!--module8 ends-->
+                        <hr size='10'>
+                        <!--module9 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 9 Name</strong> </label>
+                            <input type="text" placeholder="Module 9 name" name="m9name" id="m9name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m9t1" id="m9t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m9vl1" id="m9vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m9t2" id="m9t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m9vl2" id="m9vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m9t3" id="m9t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m9vl3" id="m9vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m9t4" id="m9t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m9vl4" id="m9vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m9t5" id="m9t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m9vl5" id="m9vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m9t6" id="m9t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m9vl6" id="m9vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn9">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm9()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m9t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m9t7" id="m9t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m9vl7" id="m9vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m9t8" id="m9t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m9vl8" id="m9vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m9t9" id="m9t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m9vl9" id="m9vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m9t10" id="m9t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m9vl10" id="m9vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m9t11" id="m9t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m9vl11" id="m9vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m9t12" id="m9t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m9vl12" id="m9vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m9t13" id="m9t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m9vl13" id="m9vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m9t14" id="m9t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m9vl14" id="m9vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m9t15" id="m9t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m9vl15" id="m9vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m9t16" id="m9t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m9vl16" id="m9vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m9t17" id="m9t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m9vl17" id="m9vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m9t18" id="m9t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m9vl18" id="m9vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m9t19" id="m9t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m9vl19" id="m9vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m9t20" id="m9t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m9vl20" id="m9vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <hr size='10'>
+                        <!--module9 ends-->
+                        <!--module10 begins-->
+                        <div class="col-sm-12" id="cscontent2">
+                            <label><strong> Module 10 Name</strong> </label>
+                            <input type="text" placeholder="Module 10 name" name="m10name" id="m10name" style="width: 50%;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label> Add Topics </label>
+                                    <input type="text" placeholder="Topic 1 name" name="m10t1" id="m10t1" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label> Video  URL </label>
+                                    <input type="text" placeholder="Video 1 URL" name="m10vl1" id="m10vl1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 2 name" name="m10t2" id="m10t2" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 2 URL" name="m10vl2" id="m10vl2" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 3 name" name="m10t3" id="m10t3" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 3 URL" name="m10vl3" id="m10vl3" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 4 name" name="m10t4" id="m10t4" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 4 URL" name="m10vl4" id="m10vl4" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 5 name" name="m10t5" id="m10t5" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 5 URL" name="m10vl5" id="m10vl5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 6 name" name="m10t6" id="m10t6" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 6 URL" name="m10vl6" id="m10vl6" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row" id="addmorebtn10">
+                                <div class="col-sm-9">
+                                    <label><strong>Toggle to add more Topics</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" onclick="toggletopicsm10()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="m10t6t20" style="display: none;">
+
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 7 name" name="m10t7" id="m10t7" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 7 URL" name="m10vl7" id="m10vl7" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 8 name" name="m10t8" id="m10t8" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 8 URL" name="m10vl8" id="m10vl8" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 9 name" name="m10t9" id="m10t9" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 9 URL" name="m10vl9" id="m10vl9" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 10 name" name="m10t10" id="m10t10" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 10 URL" name="m10vl10" id="m10vl10" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 11 name" name="m10t11" id="m10t11" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 11 URL" name="m10vl11" id="m10vl11" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 12 name" name="m10t12" id="m10t12" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 12 URL" name="m10vl12" id="m10vl12" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 13 name" name="m10t13" id="m10t13" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 13 URL" name="m10vl13" id="m10vl13" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 14 name" name="m10t14" id="m10t14" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 14 URL" name="m10vl14" id="m10vl14" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 15 name" name="m10t15" id="m10t15" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 15 URL" name="m10vl15" id="m10vl15" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 16 name" name="m10t16" id="m10t16" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 16 URL" name="m10vl16" id="m10vl16" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 17 name" name="m10t17" id="m10t17" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 17 URL" name="m10vl17" id="m10vl17" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 18 name" name="m10t18" id="m10t18" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 18 URL" name="m10vl18" id="m10vl18" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 19 name" name="m10t19" id="m10t19" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 19 URL" name="m10vl19" id="m10vl19" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <input type="text" placeholder="Topic 20 name" name="m10t20" id="m10t20" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-6">
+                                   
+                                    <input type="text" placeholder="Video 20 URL" name="m10vl20" id="m10vl20" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!--module10 ends-->
+                    </div>
+                </div>
+                <div class="container-fluid" style="background-color:rgb(219, 182, 152);">
+                    <div class="row">
+                            <div class="col-sm-12">
+                              <label><strong>KEY POINTS</strong></label>
+                            </div>
+                            <div class="col-sm-12" id="exdesc">
+                                <label> Title</label>
+                                <input type="text" placeholder="PMP Course Advantages" name="key_title" id="key_title" style="width: 100%;">
+                            </div>
+                            <div class="col-sm-6">
+                                <label> KEY POINT 1</label>
+                                <input type="text" placeholder="35 contact hours/PDUs" name="key_point1" id="key_point1" style="width: 100%;">
+                                <label> KEY POINT 2</label>
+                                <input type="text" placeholder="4 simulation test papers" name="key_point2" id="key_point2" style="width: 100%;">
+                                <label> KEY POINT 3</label>
+                                <input type="text" placeholder="10% Money back guarantee" name="key_point3" id="key_point3" style="width: 100%;">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label> KEY POINT 4</label>
+                                <input type="text" placeholder="Access to Digital materials from PMI" name="key_point4" id="key_point4" style="width: 100%;">
+                                <label> KEY POINT 5</label>
+                                <input type="text" placeholder="Experiential learning through case studies" name="key_point5" id="key_point5" style="width: 100%;">
+                                <label> KEY POINT 6</label>
+                                <input type="text" placeholder="35 contact hours/PDUs" name="key_point6" id="key_point6" style="width: 100%;">
+
+                            </div>
+                                                                  
+                            
+                            </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid" style="background-color:rgb(192, 192, 149);">
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-12">
+                        <label><strong>Exam Questions</strong></label>
+                        </div>
+                        
+                        
+                        <!-- <div class="col-sm-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" onclick="toggleex()" type="checkbox" id="flexSwitchCheckChecked" checked style="width: 70px;height:30px;">
+                            </div>
+                        </div> -->
+                        
+                       
+                           
+                        <div class="col-sm-6" id="exdesc">
+                            <label> Qs1</label>
+                            <input type="text" placeholder="Question 1" name="exdescq1" id="exdescq1" style="width: 100%;">
+                            <textarea id="exdesca1" name="exdesca1" rows="8" cols="30" placeholder="Answer 1"></textarea>
+
+                        </div>
+                        <div id="displayex" style="display: none;"><h2>Toggle To Unhide the Section</h2></div>
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs2</label>
+                            <input type="text" placeholder="Question 2" name="exdescq2" id="exdescq2" style="width: 100%;">
+                            <textarea id="exdesca2" name="exdesca2" rows="8" cols="30" placeholder="Answer 2"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs3</label>
+                            <input type="text" placeholder="Question 3" name="exdescq3" id="exdescq3" style="width: 100%;">
+                            <textarea id="exdesca3" name="exdesca3" rows="8" cols="30" placeholder="Answer 3"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs4</label>
+                            <input type="text" placeholder="Question 4" name="exdescq4" id="exdescq4" style="width: 100%;">
+                            <textarea id="exdesca4" name="exdesca4" rows="8" cols="30" placeholder="Answer 4"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs5</label>
+                            <input type="text" placeholder="Question 5" name="exdescq5" id="exdescq5" style="width: 100%;">
+                            <textarea id="exdesca5" name="exdesca5" rows="8" cols="30" placeholder="Answer 5"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs6</label>
+                            <input type="text" placeholder="Question 6" name="exdescq6" id="exdescq6" style="width: 100%;">
+                            <textarea id="exdesca6" name="exdesca6" rows="8" cols="30" placeholder="Answer 6"></textarea>
+
+                        </div>
+                       
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs7</label>
+                            <input type="text" placeholder="Question 7" name="exdescq7" id="exdescq7" style="width: 100%;">
+                            <textarea id="exdesca7" name="exdesca7" rows="8" cols="30" placeholder="Answer 7"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs8</label>
+                            <input type="text" placeholder="Question 8" name="exdescq8" id="exdescq8" style="width: 100%;">
+                            <textarea id="exdesca8" name="exdesca8" rows="8" cols="30" placeholder="Answer 8"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs9</label>
+                            <input type="text" placeholder="Question 9" name="exdescq9" id="exdescq9" style="width: 100%;">
+                            <textarea id="exdesca9" name="exdesca9" rows="8" cols="30" placeholder="Answer 9"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs10</label>
+                            <input type="text" placeholder="Question 10" name="exdescq10" id="exdescq10" style="width: 100%;">
+                            <textarea id="exdesca10" name="exdesca10" rows="8" cols="30" placeholder="Answer 10"></textarea>
+
+                        </div>
+                        <div class="col-sm-6" id="exdesc">
+                            <label> Qs11</label>
+                            <input type="text" placeholder="Question 11" name="exdescq11" id="exdescq11" style="width: 100%;">
+                            <textarea id="exdesca11" name="exdesca11" rows="8" cols="30" placeholder="Answer 11"></textarea>
+
+                        </div>
+                        <div id="displayex" style="display: none;"><h2>Toggle To Unhide the Section</h2></div>
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs12</label>
+                            <input type="text" placeholder="Question 12" name="exdescq12" id="exdescq12" style="width: 100%;">
+                            <textarea id="exdesca12" name="exdesca12" rows="8" cols="30" placeholder="Answer 12"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs13</label>
+                            <input type="text" placeholder="Question 13" name="exdescq13" id="exdescq13" style="width: 100%;">
+                            <textarea id="exdesca13" name="exdesca13" rows="8" cols="30" placeholder="Answer 13"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs14</label>
+                            <input type="text" placeholder="Question 14" name="exdescq14" id="exdescq14" style="width: 100%;">
+                            <textarea id="exdesca14" name="exdesca14" rows="8" cols="30" placeholder="Answer 14"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs15</label>
+                            <input type="text" placeholder="Question 15" name="exdescq15" id="exdescq15" style="width: 100%;">
+                            <textarea id="exdesca15" name="exdesca15" rows="8" cols="30" placeholder="Answer 15"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs16</label>
+                            <input type="text" placeholder="Question 16" name="exdescq16" id="exdescq16" style="width: 100%;">
+                            <textarea id="exdesca16" name="exdesca16" rows="8" cols="30" placeholder="Answer 16"></textarea>
+
+                        </div>
+                       
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs17</label>
+                            <input type="text" placeholder="Question 17" name="exdescq17" id="exdescq17" style="width: 100%;">
+                            <textarea id="exdesca17" name="exdesca17" rows="8" cols="30" placeholder="Answer 17"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs18</label>
+                            <input type="text" placeholder="Question 18" name="exdescq18" id="exdescq18" style="width: 100%;">
+                            <textarea id="exdesca18" name="exdesca18" rows="8" cols="30" placeholder="Answer 18"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs19</label>
+                            <input type="text" placeholder="Question 19" name="exdescq19" id="exdescq19" style="width: 100%;">
+                            <textarea id="exdesca19" name="exdesca19" rows="8" cols="30" placeholder="Answer 19"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> Qs20</label>
+                            <input type="text" placeholder="Question 20" name="exdescq20" id="exdescq20" style="width: 100%;">
+                            <textarea id="exdesca20" name="exdesca20" rows="8" cols="30" placeholder="Answer 20"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <label><strong>Why Choose SprintZeal?</strong></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Why Choose Q1" name="ycq1" id="ycq1" style="width: 100%;">
+                            <textarea name="yca1" id="yca1" cols="30" rows="8" placeholder="Why Choose Reason 1"></textarea>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Why Choose Q2" name="ycq2" id="ycq2"  style="width: 100%;">
+                            <textarea name="yca2" id="yca2" cols="30" rows="8" placeholder="Why Choose Reason 2"></textarea>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Why Choose Q3" name="ycq3" id="ycq3"  style="width: 100%;">
+                            <textarea name="yca3" id="yca3" cols="30" rows="8" placeholder="Why Choose Reason 3"></textarea>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Why Choose Q4" name="ycq4" id="ycq4"  style="width: 100%;">
+                            <textarea name="yca4" id="yca4" cols="30" rows="8" placeholder="Why Choose Reason 4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid" style="background-color:#99cab2;color: white;">
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-9">
+                        <label><strong>FAQS</strong></label>
+                        </div>
+                        <div class="col-sm-6" id="exdesc">
+                            <label> FAQ1</label>
+                            <input type="text" placeholder="Question 1" name="faq1" id="faq1" style="width: 100%;">
+                            <textarea id="faqa1" name="faqa1" rows="8" cols="30" placeholder="FAQ Answer 1"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="exdesc1">
+                            <label> FAQ2</label>
+                            <input type="text" placeholder="Question 2" name="faq2" id="faq2" style="width: 100%;">
+                            <textarea id="faqa2" name="faqa2" rows="8" cols="30" placeholder="FAQ Answer 2"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-6"  id="exdesc1">
+                        <label> FAQ3</label>
+                        <input type="text" placeholder="Question 3" name="faq3" id="faq3" style="width: 100%;">
+                        <textarea id="faqa3" name="faqa3" rows="8" cols="30" placeholder="FAQ Answer 3"></textarea>
+
+                        </div>
+
+                    <div class="col-sm-6"  id="exdesc1">
+                        <label> FAQ4</label>
+                        <input type="text" placeholder="Question 4" name="faq4" id="faq4" style="width: 100%;">
+                        <textarea id="faqa4" name="faqa4" rows="8" cols="30" placeholder="FAQ Answer 4"></textarea>
+
+                    </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-9">
+                            <label><strong>Toggle to add more FAQS</strong></label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" onclick="togglefaqs()" type="checkbox" id="flexSwitchCheckChecked"  style="width: 70px;height:30px;">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6"  id="faq5toggle" style="display: none;">
+                        <label> FAQ5</label>
+                        <input type="text" placeholder="Question 5" name="faq5" id="faq5" style="width: 100%;">
+                        <textarea id="faqa5" name="faqa5" rows="8" cols="30" placeholder="FAQ Answer 5"></textarea>
+
+                        </div>
+                        <div id="displayfaq" style="display: none;"><h2>Toggle To Add more FAq's Section</h2></div>
+
+                        <div class="col-sm-6"  id="faq6toggle"style="display: none;">
+                            <label> FAQ6</label>
+                            <input type="text" placeholder="Question 6" name="faq6" id="faq6" style="width: 100%;">
+                            <textarea id="faqa6" name="faqa6" rows="8" cols="30" placeholder="FAQ Answer 6"></textarea>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-6"  id="faq7toggle"style="display: none;">
+                        <label> FAQ7</label>
+                        <input type="text" placeholder="Question 7" name="faq7" id="faq7" style="width: 100%;">
+                        <textarea id="faqa7" name="faqa7" rows="8" cols="30" placeholder="FAQ Answer 7"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="faq8toggle" style="display: none;">
+                            <label> FAQ8</label>
+                            <input type="text" placeholder="Question 8" name="faq8" id="faq8" style="width: 100%;">
+                            <textarea id="faqa8" name="faqa8" rows="8" cols="30" placeholder="FAQ Answer 8"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-6"  id="faq9toggle"style="display: none;">
+                        <label> FAQ9</label>
+                        <input type="text" placeholder="Question 9" name="faq9" id="faq9" style="width: 100%;">
+                        <textarea id="faqa9" name="faqa9" rows="8" cols="30" placeholder="FAQ Answer 9"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="faq10toggle" style="display: none;">
+                            <label> FAQ10</label>
+                            <input type="text" placeholder="Question 10" name="faq10" id="faq10" style="width: 100%;">
+                            <textarea id="faqa10" name="faqa10" rows="8" cols="30" placeholder="FAQ Answer 10"></textarea>
+
+                        </div>
+                        <div class="col-sm-6"  id="faq11toggle" style="display: none;" id="exdesc">
+                            <label> FAQ11</label>
+                            <input type="text" placeholder="Question 11" name="faq11" id="faq11" style="width: 100%;">
+                            <textarea id="faqa11" name="faqa11" rows="8" cols="30" placeholder="FAQ Answer 11"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6" id="faq12toggle" style="display: none;" id="exdesc1">
+                            <label> FAQ12</label>
+                            <input type="text" placeholder="Question 12" name="faq12" id="faq12" style="width: 100%;">
+                            <textarea id="faqa12" name="faqa12" rows="8" cols="30" placeholder="FAQ Answer 12"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-6"  id="faq13toggle" style="display: none;"  id="exdesc1">
+                        <label> FAQ13</label>
+                        <input type="text" placeholder="Question 13" name="faq13" id="faq13" style="width: 100%;">
+                        <textarea id="faqa13" name="faqa13" rows="8" cols="30" placeholder="FAQ Answer 13"></textarea>
+
+                        </div>
+
+                    <div class="col-sm-6"   id="faq14toggle" style="display: none;" id="exdesc1">
+                        <label> FAQ14</label>
+                        <input type="text" placeholder="Question 14" name="faq14" id="faq14" style="width: 100%;">
+                        <textarea id="faqa14" name="faqa14" rows="8" cols="30" placeholder="FAQ Answer 14"></textarea>
+
+                    </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 100px;">
+                        
+                        
+                        <div class="col-sm-6"  id="faq15toggle" style="display: none;" >
+                        <label> FAQ15</label>
+                        <input type="text" placeholder="Question 15" name="faq15" id="faq15" style="width: 100%;">
+                        <textarea id="faqa15" name="faqa15" rows="8" cols="30" placeholder="FAQ Answer 15"></textarea>
+
+                        </div>
+                        
+
+                        <div class="col-sm-6"  id="faq16toggle" style="display: none;" >
+                            <label> FAQ16</label>
+                            <input type="text" placeholder="Question 16" name="faq16" id="faq16" style="width: 100%;">
+                            <textarea id="faqa16" name="faqa16" rows="8" cols="30" placeholder="FAQ Answer 16"></textarea>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-6"  id="faq17toggle" style="display: none;" >
+                        <label> FAQ17</label>
+                        <input type="text" placeholder="Question 17" name="faq17" id="faq17" style="width: 100%;">
+                        <textarea id="faqa17" name="faqa17" rows="8" cols="30" placeholder="FAQ Answer 17"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="faq18toggle" style="display: none;" >
+                            <label> FAQ18</label>
+                            <input type="text" placeholder="Question 18" name="faq18" id="faq18" style="width: 100%;">
+                            <textarea id="faqa18" name="faqa18" rows="8" cols="30" placeholder="FAQ Answer 18"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 100px;">
+                        <div class="col-sm-6"  id="faq19toggle" style="display: none;"  >
+                        <label> FAQ19</label>
+                        <input type="text" placeholder="Question 19" name="faq19" id="faq19" style="width: 100%;">
+                        <textarea id="faqa19" name="faqa19" rows="8" cols="30" placeholder="FAQ Answer 19"></textarea>
+
+                        </div>
+
+                        <div class="col-sm-6"  id="faq20toggle" style="display: none;"  >
+                            <label> FAQ20</label>
+                            <input type="text" placeholder="Question 20" name="faq20" id="faq20" style="width: 100%;">
+                            <textarea id="faqa20" name="faqa20" rows="8" cols="30" placeholder="FAQ Answer 20"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row" style="margin-bottom:50px;">
+                       
+                        <div class="col-sm-6">
+                            <label>
+                                Disclaimer
+                            </label>
+                            <textarea id="disclaimer" name="disclaimer" rows="10" cols="30" placeholder="Disclaimer"></textarea>
+
+                            <!-- <input type="text" name="disclaimer" id="disclaimer" style="width: 100%;"> -->
+                        </div>
+                        <div class="col-sm-3">
+                            <label >Display Contact-Us on Banner?</label>
+                            <input type="checkbox" name="checkbox1" class="inline checkbox" id="checkbox1" value="false">
+                     
+                        
+                            <label >Form Page Title</label>
+                            <input type="input" name="formboxtitle"  id="formboxtitle" placeholder="Request A Quote">
+                        </div>
+                        <div class="col-sm-3">
+                            <img src="bannercontactus.png" alt="contactusbox" style="width: 350px;height:250px;">
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/courses'" value="Cancel">
+            </form>
+<script>
+    $("#checkbox1").on('change', function() {
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'true');
+  } 
+  else {
+    $(this).attr('value', 'false');
+  }
+});
+//  var toolbarOptions=[
+//      ['bold','italic','underline','strike'],
+//     //  ['link', 'image'],
+//      ['blockquote', 'code-block'],
+
+// [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+// [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+// [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+// [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+// [{ 'direction': 'rtl' }],                         // text direction
+
+// [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+// [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+// [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+// [{ 'font': [] }],
+// [{ 'align': [] }],
+
+// ['clean'] 
+
+//  ];
+
+//  var editors=['#key2','#key3','#key4','#key5','#key6','#key7','#key8','#key9','#key10','#key11','#key12','#key13','#key14','#key15','#key16','#key17','#key18','#key19','#key20','#key21','#key22','#key23','#key24','#gqsans1','#gqsans2','#gqsans3','#csdscq1tool','#csdscq2tool','#exdscq1tool','#exdscq2tool','#faq1tool','#faq2tool','#faq3tool','#faq4tool','#faq5tool','#faq6tool','#faq7tool','#faq8tool','#faq9tool','#faq10tool','#courseinfotool'];
+//  for(var k=0;k<=editors.length;k++){
+//     var quill=new Quill(editors[k],{
+//      modules:{
+//          toolbar:toolbarOptions
+//      },
+//      theme:'snow'
+//  });
+//  }
+
+//  var form= document.querySelector("form");
+//  var input = document.querySelector('#key1');
+//  form.addEventListener('submit', function(e){
+     
+//     input.value =JSON.stringify( quill.root.innerText);
+//     console.log(input.value)
+   
+//   });
+
+///toggle buttons functions goes here
+ function toggle(){
+     var csdesc =document.getElementById("csdesc");
+     var csdesc1 =document.getElementById("csdesc1");
+     var display=document.getElementById("display");
+
+     if (csdesc.style.display === "none") {
+            csdesc.style.display = "block";
+            csdesc1.style.display = "block";
+            display.style.display = "none";
+           
+        } else {
+            csdesc.style.display = "none";
+            csdesc1.style.display = "none";
+            display.style.display = "block";
+           
+            
+
+        }
+ }
+ function toggleex(){
+     var exdesc =document.getElementById("exdesc");
+     var exdesc1 =document.getElementById("exdesc1");
+     var displayex=document.getElementById("displayex");
+
+     if (exdesc.style.display === "none") {
+        exdesc.style.display = "block";
+        exdesc1.style.display = "block";
+            displayex.style.display = "none";
+           
+        } else {
+            exdesc.style.display = "none";
+            exdesc1.style.display = "none";
+            displayex.style.display = "block";
+           
+            
+
+        }
+ }
+ function togglefaqs(){
+     var faq5toggle =document.getElementById("faq5toggle");
+     var faq6toggle =document.getElementById("faq6toggle");
+     var faq7toggle =document.getElementById("faq7toggle");
+     var faq8toggle =document.getElementById("faq8toggle");
+     var faq9toggle =document.getElementById("faq9toggle");
+     var faq10toggle =document.getElementById("faq10toggle");
+     var faq11toggle =document.getElementById("faq11toggle");
+     var faq12toggle =document.getElementById("faq12toggle");
+     var faq13toggle =document.getElementById("faq13toggle");
+     var faq14toggle =document.getElementById("faq14toggle");
+     var faq15toggle =document.getElementById("faq15toggle");
+     var faq16toggle =document.getElementById("faq16toggle");
+     var faq17toggle =document.getElementById("faq17toggle");
+     var faq18toggle =document.getElementById("faq18toggle");
+     var faq19toggle =document.getElementById("faq19toggle");
+     var faq20toggle =document.getElementById("faq20toggle");
+     
+     
+     var displayfaq=document.getElementById("displayfaq");
+
+     if (faq5toggle.style.display === "none") {
+        faq5toggle.style.display = "block";
+        faq6toggle.style.display = "block";
+        faq7toggle.style.display = "block";
+        faq8toggle.style.display = "block";
+        faq9toggle.style.display = "block";
+        faq10toggle.style.display = "block";
+        faq11toggle.style.display = "block";
+        faq12toggle.style.display = "block";
+        faq13toggle.style.display = "block";
+        faq14toggle.style.display = "block";
+        faq15toggle.style.display = "block";
+        faq16toggle.style.display = "block";
+        faq17toggle.style.display = "block";
+        faq18toggle.style.display = "block";
+        faq19toggle.style.display = "block";
+        faq20toggle.style.display = "block";
+        
+            displayfaq.style.display = "none";
+           
+        } else {
+            faq5toggle.style.display = "none";
+            faq6toggle.style.display = "none";
+            faq7toggle.style.display = "none";
+            faq8toggle.style.display = "none";
+            faq9toggle.style.display = "none";
+            faq10toggle.style.display = "none";
+            faq11toggle.style.display = "none";
+            faq12toggle.style.display = "none";
+            faq13toggle.style.display = "none";
+            faq14toggle.style.display = "none";
+            faq15toggle.style.display = "none";
+            faq16toggle.style.display = "none";
+            faq17toggle.style.display = "none";
+            faq18toggle.style.display = "none";
+            faq19toggle.style.display = "none";
+            faq20toggle.style.display = "none";
+            displayfaq.style.display = "block";
+
+        }
+ }
+ function toggletopicsm1(){
+     var m1remaining=document.getElementById('m1t6t20');
+     var addmorebtn=document.getElementById('addmorebtn1');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm2(){
+     var m1remaining=document.getElementById('m2t6t20');
+     var addmorebtn=document.getElementById('addmorebtn2');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm3(){
+     var m1remaining=document.getElementById('m3t6t20');
+     var addmorebtn=document.getElementById('addmorebtn3');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm4(){
+     var m1remaining=document.getElementById('m4t6t20');
+     var addmorebtn=document.getElementById('addmorebtn4');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm5(){
+     var m1remaining=document.getElementById('m5t6t20');
+     var addmorebtn=document.getElementById('addmorebtn5');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm6(){
+     var m1remaining=document.getElementById('m6t6t20');
+     var addmorebtn=document.getElementById('addmorebtn6');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm7(){
+     var m1remaining=document.getElementById('m7t6t20');
+     var addmorebtn=document.getElementById('addmorebtn7');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm8(){
+     var m1remaining=document.getElementById('m8t6t20');
+     var addmorebtn=document.getElementById('addmorebtn8');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm9(){
+     var m1remaining=document.getElementById('m9t6t20');
+     var addmorebtn=document.getElementById('addmorebtn9');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+ function toggletopicsm10(){
+     var m1remaining=document.getElementById('m10t6t20');
+     var addmorebtn=document.getElementById('addmorebtn10');
+     if(m1remaining.style.display=='none'){
+         m1remaining.style.display='block';
+     }
+     else{
+        m1remaining.style.display='none';
+     }
+ }
+
+ ////getting category data to select dropdown here
+var data=document.getElementById("data").innerText;
+var array=data.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('category');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+ 
+
+
+</script>
+
+
+<%- include("./partials/footer") %>

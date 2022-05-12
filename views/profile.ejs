@@ -1,0 +1,103 @@
+<%- include("./partials/header") %>
+<style>
+    body{
+        background-image: url('bg.jpg');
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+    }
+    form {border: 3px solid #f1f1f1;}
+
+input[type=email], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(204, 204, 204);
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+input[type=email], input[type=password]:hover {
+    border:1px solid blueviolet;
+}
+
+
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 10%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+
+
+</style>
+
+<div class="container mt-5">
+ 
+    <h1 style="color: aliceblue;text-align: center;">ADMIN </h1>
+    <div id="logbox" align='center' style="background-color: white;">
+   
+   
+        <form action="/changecred" method="post">
+            <div class="imgcontainer">
+              <img src="img_avatar2.png" alt="Avatar" class="avatar">
+            </div>
+          
+            <div class="container">
+              <label for="email"></label><br>
+              
+              <input type="email" placeholder="Enter email" name="email" required><br>
+          
+              <label for="psw">Change password</label><br>
+              <input type="password" placeholder="Enter New Password" name="password" required>
+                  
+              <button type="submit">Update</button>
+              
+            </div>
+          
+            
+          </form>
+    </div>
+   
+
+</div>
+
+
+<%- include("./partials/footer") %>

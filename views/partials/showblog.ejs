@@ -1,0 +1,18 @@
+<% for(var i=0;i<data.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=data[i].blogtitle%></td>
+    <td><%=data[i].Status%></td>
+
+    <td>
+        <a href='/edit_blog/<%=data[i]._id%>/<%=data[i].blogtitle%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+
+        <a href='/delete_blog/<%=data[i]._id%>/<%=data[i].blogtitle%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+        </a>
+    </td>
+
+    </tr>
+<%}%>

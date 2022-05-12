@@ -1,0 +1,155 @@
+<%- include("./partials/header") %>
+<style>
+    body{
+      background-color: black;
+    }
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ #cancel{
+  width: 100%;
+  background-color: #f50000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+label{
+    font-size: large;
+}
+</style>
+<!-- <div class="container-fluid" style="background-color: darkgray;">
+    <div class="row">
+        <div class="com-sm-12">
+            <button type="button" onclick="Save()" class="btn btn-success">Save</button>
+            <button type="button" onclick="Cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12" style="background-color: grey;color: white;padding-top: 30px;">
+            <h3>Edit  City</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+           
+            <form action="/updatecity/<%=citydata._id%>" method="POST"  style="padding-top:10px;">
+              <h1 id="data" style="display: none;"><%=data%></h1>
+              <h1 id="code" style="display: none;"><%=code%></h1>
+                <label for="cityname">City Name*</label>
+                <input type="text" id="cityname" name="cityname" placeholder="Cityname" value="<%=citydata.city_name%>" required>
+            
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label for="Country">Country </label>
+                    <select name="country" id="country" style="width: 100%;"></select>
+                    <small><strong><%=citydata.country%></strong></small>
+                    <br>
+                    <br>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="Country">Country Code </label>
+                    <select name="countrycode" id="countrycode" style="width: 100%;"></select>
+                    <small><strong><%=citydata.country_code%></strong></small>
+                    <br>
+                    <br>
+    
+                  </div>
+                </div>
+                
+               
+              
+                <label for="contact">Contact</label><br>
+                <input type="text" id="contact" name="contact" placeholder="" value="<%=citydata.number%>" required><br>
+
+                
+
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                  <option value="enable">Enable</option>
+                  <option value="disable">Disable</option>
+                </select>
+
+
+                <input type="submit" value="Save">
+                <input type="button" id="cancel" onclick="location.href='/offers'" value="Cancel">
+              </form>
+
+
+        </div>
+        
+    </div>
+
+</div>
+<script>
+     ////getting category data to select dropdown here
+var data=document.getElementById("data").innerText;
+var array=data.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('country');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+ var code=document.getElementById("code").innerText;
+var array=code.split(',');
+ for(var i=0;i<array.length;i++){
+     var select=document.getElementById('countrycode');
+     var option=document.createElement("option");
+     option.text=array[i];
+     select.add(option);
+ }
+ 
+// function addoffers(e){
+//     e.preventDefault();
+//     const offername=document.getElementById('offername').value.toUpperCase();
+//     const couponcode=document.getElementById('couponcode').value.toUpperCase();
+//     const category=document.getElementById('category').value.toUpperCase();
+//     const type=document.getElementById('type').value;
+//     const status=document.getElementById('status').value.toUpperCase();
+//     const applicablecountries=document.getElementById('applicablecountries').value;
+//     const offermode=document.getElementById('offermode').value;
+//     const discountamt=document.getElementById('discountamt').value.toUpperCase();
+//     const startdate=document.getElementById('startdate').value;
+//     const enddate=document.getElementById('enddate').value;
+//    const data={offername,couponcode,category,type,status,applicablecountries,offermode,discountamt,startdate,enddate};
+//    const options={
+//     method:'POST',
+//     headers:{
+//        'Content-Type':'application/json'
+//     },
+//    body:JSON.stringify(data)
+//    }
+//    fetch('/offerdata',options)
+   
+   
+// }
+
+</script>
+
+<%- include("./partials/footer") %>

@@ -1,0 +1,26 @@
+<% for(var i=0;i<data.length;i++){ %>
+    <tr>
+    <td><%=i+1%></td>
+    <td><%=data[i].reviewername%></td>
+    <td><%=data[i].reviewerjobdesc%></td>
+    <td><%=data[i].reviewerrating%></td>
+    <td><%=data[i].status%></td>
+
+    
+
+    <td>
+        <a href='/edit_reviewer/<%=data[i]._id%>/<%=data[i].reviewername%>' class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-primary">EDIT</button></span>
+        </a>
+
+        <a href='/delete_reviewer/<%=data[i]._id%>/<%=data[i].reviewername%>'class="btn border-shadow update">
+        <span class="text-gradient"><button type="button" class="btn btn-danger">DELETE</button></span>
+
+        </a>
+    </td>
+
+    </tr>
+
+
+    
+<%}%>
